@@ -1,0 +1,110 @@
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Créer un nouveau post</h2>
+                <h3 class="section-subheading text-muted">____________________________________________________</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-signin" role="form" method="post" action="/listmessage">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Votre message" id="message" name="content" required
+                                          data-validation-required-message="Please enter a message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-xl">Valider votre message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Liste des messages</h2>
+                <h3 class="section-subheading text-muted">...</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="timeline">
+                    {{#with paginate}}
+                    {{#if retour}}
+                    <li class="timeline-inverted">
+                        <a href="/listmessage?page={{prev}}" class="timeline-image">
+                            <h4>Page<br>précédente</h4>
+                        </a>
+                    </li>
+                    {{/if}}
+                    {{/with}}
+                    {{#each messages}}
+                    <li>
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="../about/1.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>{{date_message}}</h4>
+                                <h4 class="subheading">Par {{auteur_message}}</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">{{content_message}}</p>
+                            </div>
+                        </div>
+                        {{#if count}}
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>{{count}} réponse</h4>
+                                <h4 class="subheading">Dernier message</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">{{lastauteur}}<br>{{lastpost}}</p>
+                            </div>
+                            <a href="/message/{{id_message}}" class="btn btn-primary btn-lg">
+                                Répondre
+                            </a>
+                        </div>
+                        {{else}}
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>0 réponse</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Soyez le premier à commenter ce post</p>
+                            </div>
+                            <a href="/message/{{id_message}}" class="btn btn-primary btn-lg">
+                                Répondre
+                            </a>
+                        </div>
+                        {{/if}}
+
+                    </li>
+                    {{/each}}
+                    {{#with paginate}}
+                    {{#if dernier}}
+                    <li class="timeline-inverted">
+                        <a href="/listmessage?page={{next}}" class="timeline-image">
+                            <h4>Page<br>suivante</h4>
+                        </a>
+                    </li>
+                    {{/if}}
+                    {{/with}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+

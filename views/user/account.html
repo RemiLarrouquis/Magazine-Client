@@ -1,0 +1,70 @@
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Modifier votre compte</h2>
+                <h3 class="section-subheading text-muted">Permet de modifier vos informations</h3>
+            </div>
+        </div>
+        {{#with users}}
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-signin" data-toggle="validator" role="form" method="post" action="/updateuser">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Prenom</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="firstname" value="{{firstname}}"
+                                       placeholder="Prenom" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <span>Nom</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lastname" value="{{lastname}}"
+                                       placeholder="Nom" required autofocus>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span>Identifiant</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="login" value="{{login}}"
+                                       placeholder="Identifiant" disabled required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <span>Mot de passe</span>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password1" id="pwd" value="{{password}}"
+                                       placeholder="Mot de passe" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <span>Vérification du mot de passe</span>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password2" data-match="#pwd" data-match-error="Les mots de passe ne sont pas identiques" value="{{password}}"
+                                       placeholder="Vérification du mot de passe" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-xl">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{/with}}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</section>

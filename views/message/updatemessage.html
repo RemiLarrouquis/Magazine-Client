@@ -1,0 +1,28 @@
+<section id="contact">
+    <div class="container">
+        {{#with message}}
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-signin" role="form" method="post" action="/updatemessage/{{id_message}}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Répondre" id="message" name="content"
+                                          value="{{content_message}}"
+                                          required
+                                          data-validation-required-message="Please enter a message.">{{content_message}}</textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-xl">Répondre</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{/with}}
+    </div>
+</section>

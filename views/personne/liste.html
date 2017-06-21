@@ -1,0 +1,22 @@
+<h3>Liste des personnes</h3>
+<table class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each personnes}}
+        <tr>
+            <td><a href="/detailpersonne/{{id_user}}">{{nom}}</a></td>
+            <td>{{prenom}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<br/>
+{{#each personnes}}
+{{prenom}} <strong>{{nom}}</strong><br/>
+{{/each}}

@@ -1,0 +1,40 @@
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Vos posts</h2>
+                <h3 class="section-subheading text-muted">____________________________________________________</h3>
+            </div>
+        </div>
+        {{#each messages}}
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="section-subheading text-muted">{{auteur_message}} - {{date_message}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div class="">
+                            {{content_message}}
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <br>
+            <div class="col-lg-12">
+                <div class="col-lg-offset-8 col-lg-4 pull-right">
+                    <a href="/message/{{id_message}}" type="submit" class="btn btn-info">Voir le post</a>
+                    <a href="/updatepost/{{id_message}}" type="submit" class="btn btn-primary">Modifier</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <h3 class="section-subheading text-muted">_____________________________________________</h3>
+        </div>
+        {{/each}}
+    </div>
+</section>

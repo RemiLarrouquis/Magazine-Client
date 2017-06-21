@@ -1,0 +1,29 @@
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Liste des utilisateurs</h2>
+                <h3 class="section-subheading text-muted">____________________________________________________</h3>
+            </div>
+        </div>
+        {{#each users}}
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h4 class="subheading">Utilisateur <a href="/user/{{id}}">{{login}} ({{lastname}} {{firstname}})</a></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="col-lg-12 text-center">
+                    <a href="/defilance/{{id}}" type="submit" class="btn btn-info">Voir les défis lancés</a>
+                    <a href="/defireleve/{{id}}" type="submit" class="btn btn-default">Voir les défis relevés</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <h3 class="section-subheading text-muted">_____________________________________________</h3>
+        </div>
+        {{/each}}
+    </div>
+</section>
