@@ -1,16 +1,17 @@
 /**
  * Created by Ludovic on 24/03/2016.
  */
+var express = require('express');
+var path = require('path');
+
 module.exports = function (app, passport) {
     console.log('dirname', __dirname);
     var public = __dirname + '/public/';
     var css = public + '/stylesheets/';
     var js = public + '/js/';
     var img = public + '/img/';
-    //LocalStrategy = require("passport-local").Strategy
-    // var path = require('path');
-    //
-    // app.use(express.static(path.resolve('./public')));
+
+
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
@@ -35,27 +36,6 @@ module.exports = function (app, passport) {
         var model = {user: req.user};
         res.render(viewname(req), model);
     });
-
-    //passport.use('local-login', new LocalStrategy({
-    //    usernameField: 'login',
-    //    passwordField: 'password',
-    //    passReqToCallback: true
-    //}, function (req, login, password, done) {
-    //    User.findOne({'local.login': email}, function (err, user) {
-    //        if(err){
-    //            return done(err);
-    //        }
-    //        if(!user){
-    //            return done(null,false,req.flash('loginMessage',"Identifiant incorrecte"));
-    //        }
-    //        if(!user.validPassword(password)){
-    //            return done(null,false,req.flash('loginMessage','Mot de passe incorrecte'));
-    //        }
-    //
-    //        return done(null,user);
-    //    });
-    //}));
-
 
     app.post('/authenticate',
         passport.authenticate('local-login', {
@@ -82,21 +62,28 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
-    app.get('*.css', function (req, res) {
-        res.sendFile(css + req.originalUrl);
-    });
+    app.use(express.static(path.join(__dirname, 'public')));
 
-    app.get('*.js', function (req, res) {
-        res.sendFile(js + req.originalUrl);
-    });
 
-    app.get('*.png', function (req, res) {
-        res.sendFile(img + req.originalUrl);
-    });
-
-    app.get('*.jpg', function (req, res) {
-        res.sendFile(img + req.originalUrl);
-    });
+    // app.get('*.css', function (req, res) {
+    //     res.sendFile(css + req.originalUrl);
+    // });
+    //
+    // app.get('*.png', function (req, res) {
+    //     res.sendFile(js + "/rs-plugin/assets/" + req.originalUrl);
+    // });
+    //
+    // app.get('*.js', function (req, res) {
+    //     res.sendFile(js + req.originalUrl);
+    // });
+    //
+    // app.get('*.png', function (req, res) {
+    //     res.sendFile(img + req.originalUrl);
+    // });
+    //
+    // app.get('*.jpg', function (req, res) {
+    //     res.sendFile(img + req.originalUrl);
+    // });
 
 };
 

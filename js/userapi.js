@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
     app.post("/createuser", function (req, res) {
+        console.log("blabla");
         var formuser = req.body;
         db.each("SELECT count(id) as nb FROM user WHERE login = ?", [formuser.login],
             function (err, user) {

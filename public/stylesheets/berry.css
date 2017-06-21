@@ -813,7 +813,7 @@ section#features .media.active .media-heading {
   color: #cc6698;
 }
 section#reviews {
-  background: url("../img/berry/bk-berry.jpg");
+  background: url("/img/berry/bk-berry.jpg");
 }
 section#reviews header {
   color: #ffffff;
@@ -881,7 +881,7 @@ section#demo header h1:after {
 }
 /* Get app Section */
 section#getApp {
-  background: url("../img/berry/bk-berry-ga.jpg");
+  background: url("/img/berry/bk-berry-ga.jpg");
 }
 section#getApp header {
   color: #ffffff;
