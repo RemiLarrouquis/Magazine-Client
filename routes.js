@@ -3,6 +3,8 @@
  */
 var express = require('express');
 var path = require('path');
+var request = require("request");
+var http = require('http');
 
 module.exports = function (app, passport) {
     console.log('dirname', __dirname);
@@ -24,7 +26,8 @@ module.exports = function (app, passport) {
     });
 
 
-    app.get(['/', '/login', '/newusers'], function (req, res) {
+
+    app.get(['/', '/login', '/register'], function (req, res) {
         if (req.originalUrl === '/') {
             req.originalUrl = 'index';
         }
@@ -37,13 +40,22 @@ module.exports = function (app, passport) {
         res.render(viewname(req), model);
     });
 
-    app.post('/authenticate',
-        passport.authenticate('local-login', {
-            successRedirect: '/welcome',
-            failureRedirect: '/login',
-            failureFlash: true
-        })
-    );
+    app.post('/authenticate', function (req, res) {
+        var formuser = req.body;
+        request({
+            uri: "http://magazine.dev/api/login",
+            method: "POST",
+            form: formuser
+        }, function (error, response, body) {
+            console.log("body",body);
+            var responsebody = JSON.parse(body);
+            if (responsebody.result !== undefined) {
+
+            }
+            res.redirect("/login");
+
+        });
+    });
 
     //****************************************************************
     //****************************************************************

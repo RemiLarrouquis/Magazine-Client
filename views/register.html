@@ -7,8 +7,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form class="form-signin" data-toggle="validator" role="form" method="post" action="/createuser"
-                      novalidate>
+                <form class="form-signin" data-toggle="validator" role="form" method="post" action="/createuser">
 
                     <!--<ul class="nav nav-tabs">-->
                     <!--<li role="presentation"><a href="#account" aria-controls="account" role="tab" data-toggle="tab">Votre-->
@@ -27,6 +26,7 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
+
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="password" class="form-control" name="password1" id="password"
@@ -94,14 +94,14 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="code_postal"
+                                    <input type="number" class="form-control" name="code_postal"
                                            placeholder="Code postal" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="telephone"
+                                    <input type="number" class="form-control" name="telephone"
                                            placeholder="Téléphone" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -111,7 +111,7 @@
 
                         <div class="clearfix"></div>
                         <div class="col-lg-12 text-center">
-                            <!--<a href="/newusers/profil" class="btn btn-xl">Précédent</a>-->
+                            <!--<a href="/register/profil" class="btn btn-xl">Précédent</a>-->
                             <div id="success"></div>
                             <button type="submit" class="btn btn-xl">Valider</button>
                         </div>

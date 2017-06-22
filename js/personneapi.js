@@ -31,21 +31,7 @@ module.exports = function (app, db) {
             }
         );
     });
-    app.post("/newuser", function (req, res) {
-        var user = req.body;
-        req.account = true;
-        console.log(req.account);
-        if (user.nom === undefined || user.prenom === undefined || user.mail === undefined || user.password === undefined) {
-            res.status(400).end();
-            return;
-        }
-        if (user.mdp === user.password) {
-            var stmt = db.prepare("INSERT INTO user(prenom, nom, mail, mdp) VALUES(?, ?, ?, ?)");
-            stmt.run(user.prenom, user.nom, user.mail, user.password);
-            stmt.finalize();
-        }
-        res.render("login");
-    });
+
     app.post("/personne", isLoggedIn, function (req, res) {
         var personne = req.body;
         if (personne.nom === undefined || personne.prenom === undefined) {
