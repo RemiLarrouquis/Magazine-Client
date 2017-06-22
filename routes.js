@@ -63,28 +63,6 @@ module.exports = function (app, passport) {
     });
 
     app.use(express.static(path.join(__dirname, 'public')));
-
-
-    // app.get('*.css', function (req, res) {
-    //     res.sendFile(css + req.originalUrl);
-    // });
-    //
-    // app.get('*.png', function (req, res) {
-    //     res.sendFile(js + "/rs-plugin/assets/" + req.originalUrl);
-    // });
-    //
-    // app.get('*.js', function (req, res) {
-    //     res.sendFile(js + req.originalUrl);
-    // });
-    //
-    // app.get('*.png', function (req, res) {
-    //     res.sendFile(img + req.originalUrl);
-    // });
-    //
-    // app.get('*.jpg', function (req, res) {
-    //     res.sendFile(img + req.originalUrl);
-    // });
-
 };
 
 function viewname(req) {

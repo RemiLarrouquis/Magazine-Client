@@ -3,47 +3,7 @@
  */
 //https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 module.exports = function (app, db) {
-    app.get('/scriptsql', function (req, res) {
-        db.run("CREATE TABLE user(id INTEGER PRIMARY KEY," +
-            "login VARCHAR(50) NOT NULL," +
-            "firstname VARCHAR(50) NOT NULL," +
-            "lastname VARCHAR(50) NOT NULL," +
-            "password VARCHAR(50) NOT NULL);");
-        db.run("CREATE TABLE challenge(id INTEGER PRIMARY KEY," +
-            "id_user INTEGER NOT NULL," +
-            "entitled TEXT NOT NULL," +
-            "hidden BOOLEAN," +
-            "success BOOLEAN," +
-            "date DATE DEFAULT (datetime('now','localtime'))," +
-            "FOREIGN KEY(id_user) REFERENCES user(id));");
-        db.run("CREATE TABLE comment(id INTEGER PRIMARY KEY," +
-            "id_user INTEGER NOT NULL," +
-            "id_challenge INTEGER NOT NULL," +
-            "commentary TEXT," +
-            "validchallenge BOOLEAN," +
-            "photo VARCHAR(255)," +
-            "approuve BOOLEAN," +
-            "FOREIGN KEY(id_user) REFERENCES user(id)," +
-            "FOREIGN KEY (id_challenge) REFERENCES challenge(id));");
-        db.run("CREATE TABLE interact(id INTEGER PRIMARY KEY," +
-            "id_user INTEGER NOT NULL," +
-            "id_challenge INTEGER NOT NULL," +
-            "liked BOOLEAN," +
-            "FOREIGN KEY(id_user) REFERENCES user(id)," +
-            "FOREIGN KEY (id_challenge) REFERENCES challenge(id));");
-        db.run("CREATE TABLE suivi(id INTEGER PRIMARY KEY," +
-            "id_user INTEGER NOT NULL," +
-            "id_challenge INTEGER NOT NULL," +
-            "FOREIGN KEY(id_user) REFERENCES user(id)," +
-            "FOREIGN KEY (id_challenge) REFERENCES challenge(id));");
-        db.run("CREATE TABLE parameter(id INTEGER PRIMARY KEY," +
-            "name VARCHAR(100));");
-        db.run("CREATE TABLE user_has_parameter(id_user INTEGER," +
-            "id_parameter INTEGER," +
-            "value VARCHAR(100) NOT NULL," +
-            "FOREIGN KEY(id_user) REFERENCES user(id)," +
-            "FOREIGN KEY(id_parameter) REFERENCES challenge(id));");
-    });
+
     app.get("/personnes", function (req, res) {
         var result = [];
         db.each("SELECT * FROM personne ORDER BY nom,prenom",
@@ -73,6 +33,8 @@ module.exports = function (app, db) {
     });
     app.post("/newuser", function (req, res) {
         var user = req.body;
+        req.account = true;
+        console.log(req.account);
         if (user.nom === undefined || user.prenom === undefined || user.mail === undefined || user.password === undefined) {
             res.status(400).end();
             return;

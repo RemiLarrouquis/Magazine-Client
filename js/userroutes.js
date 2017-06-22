@@ -31,4 +31,19 @@ module.exports = function (app, db) {
                 res.render('user/listuser', model);
             });
     });
+
+
+
+    app.get("/newusers/profil", function (req, res) {
+        console.log("req profil",req.body);
+        var model = {user: req.user};
+        res.render('newusers', model);
+    });
+
+    app.get("/newusers/account", function (req, res) {
+        console.log("req account",res);
+
+        var model = {user: req.user};
+        res.render('newusers', model);
+    });
 };
