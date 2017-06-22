@@ -7,25 +7,10 @@ var request = require("request");
 var http = require('http');
 
 module.exports = function (app, passport) {
-    console.log('dirname', __dirname);
     var public = __dirname + '/public/';
     var css = public + '/stylesheets/';
     var js = public + '/js/';
     var img = public + '/img/';
-
-
-    passport.serializeUser(function (user, done) {
-        done(null, user.id);
-    });
-
-    // used to deserialize the user
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(err, user);
-        });
-    });
-
-
 
     app.get(['/', '/login', '/register'], function (req, res) {
         if (req.originalUrl === '/') {
@@ -47,27 +32,12 @@ module.exports = function (app, passport) {
             method: "POST",
             form: formuser
         }, function (error, response, body) {
-            console.log("body",body);
             var responsebody = JSON.parse(body);
-            if (responsebody.result !== undefined) {
-
+            if (responsebody.result !== "Erreur d'identifiant ou mot de passe.") {
+                res.redirect("/publications");
             }
-            res.redirect("/login");
-
         });
     });
-
-    //****************************************************************
-    //****************************************************************
-    // route for twitter authentication and login
-    app.get('/auth/twitter', passport.authenticate('twitter'));
-
-    // handle the callback after twitter has authenticated the user
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect: '/welcome',
-            failureRedirect: '/login'
-        }));
 
     app.get('/logout', function (req, res) {
         req.logout();
@@ -79,7 +49,7 @@ module.exports = function (app, passport) {
 
 function viewname(req) {
     return req.originalUrl.replace(/^\//, '');
-};
+}
 
 function isLoggedIn(req, res, next) {
     // si utilisateur authentifié, continuer
