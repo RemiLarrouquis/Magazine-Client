@@ -16,13 +16,18 @@ module.exports = function (app, passport) {
         if (req.originalUrl === '/') {
             req.originalUrl = 'index';
         }
-        var model = {user: req.user};
-        res.render(viewname(req), model);
-    });
+        request({
+            uri: "http://magazine.dev/api/publication/liste",
+            method: "GET"
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            if (!responseBody.error) {
+                var publications = responseBody.result;
+            }
+            var model = {publication: publications};
+            res.render(viewname(req), model);
+        });
 
-    app.get(['/welcome'], isLoggedIn, function (req, res) {
-        var model = {user: req.user};
-        res.render(viewname(req), model);
     });
 
     app.post('/authenticate', function (req, res) {
@@ -32,18 +37,16 @@ module.exports = function (app, passport) {
             method: "POST",
             form: formuser
         }, function (error, response, body) {
-            console.log("body",body);
+            console.log("body", body);
             var responsebody = JSON.parse(body);
             if (responsebody.result !== "Erreur d'identifiant ou mot de passe.") {
                 var cookie = req.cookies.token;
-                if (cookie === undefined)
-                {
-                    res.cookie('token',responsebody.result);
+                if (cookie === undefined) {
+                    res.cookie('token', responsebody.result, {maxAge: 9000000, httpOnly: true});
                 }
-                else
-                {
+                else {
                     res.clearCookie("token");
-                    res.cookie('token',responsebody.result);
+                    res.cookie('token', responsebody.result, {maxAge: 9000000, httpOnly: true});
                 }
                 res.redirect("/publications");
             }
@@ -60,13 +63,4 @@ module.exports = function (app, passport) {
 
 function viewname(req) {
     return req.originalUrl.replace(/^\//, '');
-}
-
-function isLoggedIn(req, res, next) {
-    // si utilisateur authentifié, continuer
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    // sinon afficher formulaire de login
-    res.redirect('/login');
 }

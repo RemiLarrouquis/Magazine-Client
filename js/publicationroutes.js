@@ -12,11 +12,9 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications};
+            var model = {publication: publications, cookie: req.cookies.token};
             res.render("publication/publications", model);
-
         });
-
     });
 
     app.get("/publication/:id", function (req, res) {
@@ -29,10 +27,8 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications};
-            console.log(model);
+            var model = {publication: publications, cookie: req.cookies.token};
             res.render("publication/information", model);
-
         });
 
 

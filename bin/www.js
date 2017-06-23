@@ -45,6 +45,7 @@ require('../js/userapi.js')(app);
 
 //Routing
 require('../js/userroutes.js')(app);
+require('../js/subscriptionroutes')(app);
 require('../js/publicationroutes')(app);
 
 app.listen(3333);
