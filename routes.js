@@ -32,15 +32,26 @@ module.exports = function (app, passport) {
             method: "POST",
             form: formuser
         }, function (error, response, body) {
+            console.log("body",body);
             var responsebody = JSON.parse(body);
             if (responsebody.result !== "Erreur d'identifiant ou mot de passe.") {
+                var cookie = req.cookies.token;
+                if (cookie === undefined)
+                {
+                    res.cookie('token',responsebody.result);
+                }
+                else
+                {
+                    res.clearCookie("token");
+                    res.cookie('token',responsebody.result);
+                }
                 res.redirect("/publications");
             }
         });
     });
 
     app.get('/logout', function (req, res) {
-        req.logout();
+        res.clearCookie("token");
         res.redirect('/');
     });
 

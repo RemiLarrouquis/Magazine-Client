@@ -1,0 +1,72 @@
+<section id="features">
+    <div class="container">
+        {{#each publication}}
+        <div class="section-heading scrollpoint sp-effect3">
+            <h1>{{titre}}</h1>
+            <div class="divider"></div>
+            <p>{{nb_an}} parutions par année</p>
+            <small>Pour un prix annuel de {{prix_an}} euros</small>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <img src="{{image}}" class="img-responsive scrollpoint sp-effect5" alt="">
+            </div>
+            <div class="col-md-12 scrollpoint sp-effect1">
+                <div class="media media-left feature">
+                    <p>{{description}}</p>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-4 scrollpoint sp-effect2">
+                <div class="media active feature">
+                    <a class="pull-left" href="#">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">S'abonner</h3>
+                        Vous allez être redirigé vers un service d'abonnement sécurisé
+                    </div>
+                </div>
+                <!--<div class="media feature">-->
+                    <!--<a class="pull-left" href="#">-->
+                        <!--<i class="fa fa-map-marker fa-2x"></i>-->
+                    <!--</a>-->
+                    <!--<div class="media-body">-->
+                        <!--<h3 class="media-heading">My Places</h3>-->
+                        <!--Lorem ipsum dolor sit amet.-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="media feature">-->
+                    <!--<a class="pull-left" href="#">-->
+                        <!--<i class="fa fa-film fa-2x"></i>-->
+                    <!--</a>-->
+                    <!--<div class="media-body">-->
+                        <!--<h3 class="media-heading">Media Player™</h3>-->
+                        <!--Lorem ipsum dolor sit amet.-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="media feature">-->
+                    <!--<a class="pull-left" href="#">-->
+                        <!--<i class="fa fa-compass fa-2x"></i>-->
+                    <!--</a>-->
+                    <!--<div class="media-body">-->
+                        <!--<h3 class="media-heading">Intuitive Statistics</h3>-->
+                        <!--Lorem ipsum dolor sit amet.-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="media feature">-->
+                    <!--<a class="pull-left" href="#">-->
+                        <!--<i class="fa fa-picture-o fa-2x"></i>-->
+                    <!--</a>-->
+                    <!--<div class="media-body">-->
+                        <!--<h3 class="media-heading">Weather on-the-go</h3>-->
+                        <!--Lorem ipsum dolor sit amet.-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>

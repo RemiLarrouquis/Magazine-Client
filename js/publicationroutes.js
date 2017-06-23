@@ -4,9 +4,6 @@ var path = require('path');
 
 module.exports = function (app) {
     app.get("/publications", function (req, res) {
-        console.log("hihi");
-
-        var model = {};
         request({
             uri: "http://magazine.dev/api/publication/liste",
             method: "GET"
@@ -15,11 +12,29 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            model = {publication: publications};
-            console.log(model);
+            var model = {publication: publications};
             res.render("publication/publications", model);
 
         });
+
+    });
+
+    app.get("/publication/:id", function (req, res) {
+
+        request({
+            uri: "http://magazine.dev/api/publication/detail?id=" + [req.params.id],
+            method: "GET"
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            if (!responseBody.error) {
+                var publications = responseBody.result;
+            }
+            var model = {publication: publications};
+            console.log(model);
+            res.render("publication/information", model);
+
+        });
+
 
     });
 };
