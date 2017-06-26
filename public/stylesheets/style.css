@@ -137,7 +137,7 @@ offset:focus {
 
 .btn:hover, button:focus {
     border-color: var(--hover);
-    color: #fff;
+    color: var(--hover);
 }
 
 .btn {
@@ -170,3 +170,21 @@ p.media-abonnement:hover{
     height: 130px;
 
 }
+
+.section-return {
+    margin-top:60px;
+}
+.section-heading-nomarge{
+    margin-top:-5px;
+}
+.href-return{
+    margin-left:25px;
+    color:#A43992;
+}
+
+.href-return:focus{
+    color:#A43992;
+
+}
+
+small{color:#C45DB3;}

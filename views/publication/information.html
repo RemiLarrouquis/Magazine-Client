@@ -1,7 +1,11 @@
 <section id="features">
     <div class="container">
         {{#each publication}}
-        <div class="section-heading scrollpoint sp-effect3">
+        <div class="row section-return scrollpoint sp-effect1">
+            <a href="/publications" class="href-return">Retour à la liste des publications</a>
+        </div>
+
+        <div class="row section-heading section-heading-nomarge scrollpoint sp-effect3">
             <h1>{{titre}}</h1>
             <div class="divider"></div>
             <p>{{nb_an}} parutions par année</p>
@@ -26,7 +30,7 @@
                     <a class="pull-left" href="/subscription">
                         <i class="fa fa-reply fa-2x"></i>
                     </a>
-                    <a class="media-body"  href="/subscription">
+                    <a class="media-body" href="/subscription">
                         <h3 class="media-heading">Retour</h3>
                         à la liste de mes abonnements
                     </a>
@@ -49,30 +53,35 @@
                         mon abonnement
                     </div>
                 </div>
-                <!--<div class="media feature">-->
-                    <!--<a class="pull-left" href="#">-->
-                        <!--<i class="fa fa-picture-o fa-2x"></i>-->
-                    <!--</a>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">Weather on-the-go</h3>-->
-                        <!--Lorem ipsum dolor sit amet.-->
-                    <!--</div>-->
-                <!--</div>-->
+
                 {{else}}
                 <div class="col-md-12 scrollpoint sp-effect1">
                     <div class="media media-left feature">
                         <p>{{description}}</p>
                     </div>
                 </div>
+
+                {{#if est_abonnee}}
                 <div class="media active feature">
-                    <a class="pull-left" href="#">
+                    <a class="pull-left" href="/subscription">
+                        <i class="fa fa-heart fa-2x"></i>
+                    </a>
+                    <a class="media-body" href="/subscription">
+                        <h3 class="media-heading">Vous êtes déjà abonné</h3>
+                        Voir ma liste des abonnements
+                    </a>
+                </div>
+                {{else}}
+                <div class="media active feature">
+                    <a class="pull-left" href="/subscription/new/{{id}}">
                         <i class="fa fa-plus fa-2x"></i>
                     </a>
-                    <div class="media-body">
+                    <a class="media-body" href="/subscription/new/{{id}}">
                         <h3 class="media-heading">S'abonner</h3>
                         Vous allez être redirigé vers un service d'abonnement sécurisé
-                    </div>
+                    </a>
                 </div>
+                {{/if}}
                 {{/if}}
 
 
