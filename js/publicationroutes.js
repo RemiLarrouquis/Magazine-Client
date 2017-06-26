@@ -6,10 +6,10 @@ module.exports = function (app) {
     app.get("/publications", function (req, res) {
         request({
             uri: "http://magazine.dev/api/publication/liste",
-            method: "GET"
+            method: "GET",
+            qs:{token:req.cookies.token}
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            console.log("responseBody",responseBody);
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
