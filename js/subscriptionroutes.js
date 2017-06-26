@@ -75,9 +75,13 @@ module.exports = function (app) {
             // console.log("body",body);
             var responseBody = JSON.parse(body);
             console.log("responseBody", responseBody);
-            if (responseBody.result == "Success") {
-                var model = {cookie: req.cookies.token};
-                res.render("subscription/success", model);
+            if (responseBody.error) {
+                res.render("login");
+            } else {
+                if (responseBody.result == "Success") {
+                    var model = {cookie: req.cookies.token};
+                    res.render("subscription/success", model);
+                }
             }
         })
     });

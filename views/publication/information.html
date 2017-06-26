@@ -1,7 +1,11 @@
 <section id="features">
     <div class="container">
         {{#each publication}}
-        <div class="section-heading scrollpoint sp-effect3">
+        <div class="row section-return scrollpoint sp-effect1">
+            <a href="/publications" class="href-return">Retour à la liste des publications</a>
+        </div>
+
+        <div class="row section-heading section-heading-nomarge scrollpoint sp-effect3">
             <h1>{{titre}}</h1>
             <div class="divider"></div>
             <p>{{nb_an}} parutions par année</p>
@@ -72,10 +76,10 @@
                     <a class="pull-left" href="/subscription/new/{{id}}">
                         <i class="fa fa-plus fa-2x"></i>
                     </a>
-                    <div class="media-body">
+                    <a class="media-body" href="/subscription/new/{{id}}">
                         <h3 class="media-heading">S'abonner</h3>
                         Vous allez être redirigé vers un service d'abonnement sécurisé
-                    </div>
+                    </a>
                 </div>
                 {{/if}}
                 {{/if}}
