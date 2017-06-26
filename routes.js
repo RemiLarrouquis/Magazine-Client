@@ -6,7 +6,7 @@ var path = require('path');
 var request = require("request");
 var http = require('http');
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
     var public = __dirname + '/public/';
     var css = public + '/stylesheets/';
     var js = public + '/js/';

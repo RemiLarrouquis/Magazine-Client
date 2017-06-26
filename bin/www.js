@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
-var passport = require('passport');
 var session = require('express-session');
 var exphbrs = require('express-handlebars');
 var paginate = require('express-paginate');
@@ -21,21 +20,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev')); // toute les requêtes HTTP dans le log du serveur
 
-// passport authentication middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
 // handlebars template engine
 app.engine('.html', exphbrs({extname: '.html', defaultLayout: 'template'}));
 app.set('view engine', '.html');
 
-require('../routes.js')(app, passport);
+require('../routes.js')(app);
 
 //Api
 require('../js/userapi.js')(app);
 
 //Routing
-require('../js/userroutes.js')(app);
 require('../js/subscriptionroutes')(app);
 require('../js/publicationroutes')(app);
 
