@@ -29,15 +29,6 @@ app.use(passport.session());
 app.engine('.html', exphbrs({extname: '.html', defaultLayout: 'template'}));
 app.set('view engine', '.html');
 
-// require('../js/passport.js')(app);
-// require('../js/personneapi.js')(app);
-// require('../js/personneroutes.js')(app);
-// require('../js/messageroutes.js')(app);
-// require('../js/messageapi.js')(app);
-// require('../js/challengeapi.js')(app);
-// require('../js/challengeroutes.js')(app);
-// require('../js/account.js')(app);
-
 require('../routes.js')(app, passport);
 
 //Api
