@@ -63,6 +63,25 @@ module.exports = function (app) {
         })
     });
 
+    app.get("/subscription/new/:id", function (req, res) {
+        request({
+            uri: "http://magazine.dev/api/abonnement/new",
+            method: "POST",
+            form: {
+                id: req.params.id,
+                token: req.cookies.token
+            }
+        }, function (error, response, body) {
+            // console.log("body",body);
+            var responseBody = JSON.parse(body);
+            console.log("responseBody", responseBody);
+            if (responseBody.result == "Success") {
+                var model = {cookie: req.cookies.token};
+                res.render("subscription/success", model);
+            }
+        })
+    });
+
 };
 function viewname(req) {
     return req.originalUrl.replace(/^\//, '');

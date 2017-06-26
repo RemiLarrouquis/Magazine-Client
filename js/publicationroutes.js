@@ -7,7 +7,7 @@ module.exports = function (app) {
         request({
             uri: "http://magazine.dev/api/publication/liste",
             method: "GET",
-            qs:{token:req.cookies.token}
+            qs: {token: req.cookies.token}
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
@@ -21,14 +21,19 @@ module.exports = function (app) {
     app.get("/publication/:id", function (req, res) {
 
         request({
-            uri: "http://magazine.dev/api/publication/detail?id=" + [req.params.id],
-            method: "GET"
+            uri: "http://magazine.dev/api/publication/detail",
+            method: "GET",
+            qs: {
+                id: req.params.id,
+                token: req.cookies.token
+            }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications, cookie: req.cookies.token};
+            var model = {publication: publications, cookie: req.cookies.token, abonnee: responseBody.user_est_abonnee};
+            console.log("model", model);
             res.render("publication/information", model);
         });
 
