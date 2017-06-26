@@ -12,49 +12,43 @@
             <div class="col-md-12">
                 <img src="{{image}}" class="img-responsive scrollpoint sp-effect5" alt="">
             </div>
-            <div class="col-md-12 scrollpoint sp-effect1">
-                <div class="media media-left feature">
-                    <p>{{description}}</p>
-                </div>
 
-            </div>
             <div class="col-md-4 col-sm-4 scrollpoint sp-effect2">
-                <div class="media active feature">
-                    <a class="pull-left" href="#">
-                        <i class="fa fa-plus fa-2x"></i>
-                    </a>
-                    <div class="media-body">
-                        <h3 class="media-heading">S'abonner</h3>
-                        Vous allez être redirigé vers un service d'abonnement sécurisé
+                {{#if publication_id}}
+                <div class="col-md-12 scrollpoint sp-effect1">
+                    <div class="media media-left feature">
+                        <p class="media-abonnement">{{description}}</p>
                     </div>
                 </div>
-                <!--<div class="media feature">-->
-                    <!--<a class="pull-left" href="#">-->
-                        <!--<i class="fa fa-map-marker fa-2x"></i>-->
-                    <!--</a>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">My Places</h3>-->
-                        <!--Lorem ipsum dolor sit amet.-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="media feature">-->
-                    <!--<a class="pull-left" href="#">-->
-                        <!--<i class="fa fa-film fa-2x"></i>-->
-                    <!--</a>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">Media Player™</h3>-->
-                        <!--Lorem ipsum dolor sit amet.-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="media feature">-->
-                    <!--<a class="pull-left" href="#">-->
-                        <!--<i class="fa fa-compass fa-2x"></i>-->
-                    <!--</a>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">Intuitive Statistics</h3>-->
-                        <!--Lorem ipsum dolor sit amet.-->
-                    <!--</div>-->
-                <!--</div>-->
+                <br>
+                Informations sur l'abonnement blablabla {{date_fin}}
+                <div class="media feature">
+                    <a class="pull-left" href="/subscription">
+                        <i class="fa fa-reply fa-2x"></i>
+                    </a>
+                    <a class="media-body"  href="/subscription">
+                        <h3 class="media-heading">Retour</h3>
+                        à la liste de mes abonnements
+                    </a>
+                </div>
+                <div class="media feature">
+                    <a class="pull-left" href="#">
+                        <i class="fa fa-refresh fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Renouveller</h3>
+                        l'abonnement
+                    </div>
+                </div>
+                <div class="media feature">
+                    <a class="pull-left" href="#">
+                        <i class="fa fa-pause fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">Arrêter</h3>
+                        mon abonnement
+                    </div>
+                </div>
                 <!--<div class="media feature">-->
                     <!--<a class="pull-left" href="#">-->
                         <!--<i class="fa fa-picture-o fa-2x"></i>-->
@@ -64,6 +58,23 @@
                         <!--Lorem ipsum dolor sit amet.-->
                     <!--</div>-->
                 <!--</div>-->
+                {{else}}
+                <div class="col-md-12 scrollpoint sp-effect1">
+                    <div class="media media-left feature">
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+                <div class="media active feature">
+                    <a class="pull-left" href="#">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading">S'abonner</h3>
+                        Vous allez être redirigé vers un service d'abonnement sécurisé
+                    </div>
+                </div>
+                {{/if}}
+
 
             </div>
         </div>

@@ -2,25 +2,30 @@
     <div class="container-fluid container-card">
 
         {{#each publication}}
-        <a class="col-xs-6 col-sm-4 col-md-3 col-lg-2" href="/publication/{{id}}">
-            <div class="card inverse scrollpoint sp-effect3">
-                <img class="card-img-top" height="210"
-                     src="{{image}}"
-                     width="160">
-                <div class="card-block row">
-                    <div class="col-lg-12">
-                        <h4 class="card-title text-left">{{titre}}</h4>
-                    </div>
-                    <div class="col-lg-12">
-                        <small>Prix : {{prix_an}}€</small>
-                    </div>
-                    <div class="col-lg-12">
-                        <small>{{nb_an}} / an</small>
-                    </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <a  href="/publication/{{id}}">
+                <div class="card inverse scrollpoint sp-effect3">
+                    <a href="/subscription/new" style="position: absolute" >aaa</a>
 
+                    <img class="card-img-top" height="210"
+                         src="{{image}}"
+                         width="160">
+                    <div class="card-block row">
+                        <div class="col-lg-12">
+                            <h4 class="card-title text-left">{{titre}}</h4>
+                        </div>
+                        <div class="col-lg-12">
+                            <small>Prix : {{prix_an}}€</small>
+                        </div>
+                        <div class="col-lg-12">
+                            <small>{{nb_an}} / an</small>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+
         {{/each}}
 
     </div>
