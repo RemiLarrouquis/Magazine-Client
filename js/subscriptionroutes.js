@@ -5,8 +5,13 @@ var path = require('path');
 module.exports = function (app) {
     app.get("/subscription", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/liste?token=" + req.cookies.token,
-            method: "GET"
+            uri: "http://magazine.dev/api/abonnement/liste",
+            method: "GET",
+            qs: {
+                token: req.cookies.token,
+                filterEtat: 4,
+                filterEnCours: true
+            }
         }, function (error, response, body) {
             console.log("body", body);
             var responseBody = JSON.parse(body);
@@ -86,6 +91,27 @@ module.exports = function (app) {
         })
     });
 
+    app.get("/subscription/stop/:id", function (req, res) {
+        request({
+            uri: "http://magazine.dev/api/abonnement/new",
+            method: "POST",
+            form: {
+                id: req.params.id,
+                token: req.cookies.token
+            }
+        }, function (error, response, body) {
+            // console.log("body",body);
+            var responseBody = JSON.parse(body);
+            console.log("responseBody", responseBody);
+            if (responseBody.error) {
+                res.render("login");
+            } else {
+                if (responseBody.result == "Success") {
+                    res.redirect("/subscription")
+                }
+            }
+        })
+    })
 };
 function viewname(req) {
     return req.originalUrl.replace(/^\//, '');

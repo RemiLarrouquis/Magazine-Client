@@ -36,8 +36,6 @@ module.exports = function (app) {
             console.log("model", model);
             res.render("publication/information", model);
         });
-
-
     });
 };
 function viewname(req) {

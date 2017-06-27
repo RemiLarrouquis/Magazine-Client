@@ -188,3 +188,18 @@ p.media-abonnement:hover{
 }
 
 small{color:#C45DB3;}
+b{color:#C45DB3;}
+ul{
+    padding-left: 0;
+}
+
+.media.col-xs-12{
+    padding-left:35px;
+}
+
+.divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
