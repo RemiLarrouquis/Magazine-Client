@@ -188,3 +188,18 @@ p.media-abonnement:hover{
 }
 
 small{color:#C45DB3;}
+
+
+.btn.btn-primary.active {
+    color: #ffffff;
+    background: #cc6698;
+    border-color: #cc6698;
+}
+
+button:active, button:focus {
+    outline: none !important;
+}
+
+.error {
+    color: #ff2d57;
+}
