@@ -9,6 +9,7 @@ module.exports = function (app) {
             method: "GET",
             qs: {token: req.cookies.token}
         }, function (error, response, body) {
+            console.log("body",body);
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var publications = responseBody.result;

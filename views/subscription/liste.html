@@ -1,7 +1,7 @@
 <section id="features">
     <div class="container-fluid">
         <div class="section-heading scrollpoint sp-effect3">
-            <h1>Mes abonnements</h1>
+            <h2>Mes abonnements</h2>
             <div class="divider"></div>
         </div>
         {{#if abonnements}}
@@ -21,6 +21,11 @@
                         <span>Il y a <b>{{nb_an}}</b> parutions dans l'année <br>pour un prix de <b>{{prix_an}}</b> euros.</span><br>
                     </a>
                 </div>
+                {{#if warn}}
+                <div class="section-warn col-xs-12">
+                    <span>Abonnement prennant fin dans moins de 2 mois !</span>
+                </div>
+                {{/if}}
                 <div class="col-xs-12 buttons">
                     <a href="/subscription/renew/{{id}}" class="col-xs-5 btn pulse">Réabonner</a>
                     <a href="/subscription/stop/{{publication_id}}" class="col-xs-5 btn pulse">Arrêter</a>
