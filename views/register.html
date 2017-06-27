@@ -6,120 +6,106 @@
             </div>
         </div>
         <div class="row">
+            <span class="col-xs-1" style="margin-right: -8px;"></span>
+            <div class="col-xs-5">
+                <button type="button" id="btnId" class="btn btn-primary btn-lg btn-block active">Identification</button>
+            </div>
+            <div class="col-xs-5">
+                <button type="button" id="btnPro" class="btn btn-primary btn-lg btn-block">Profil</button>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
             <div class="col-lg-12">
-                <form class="form-signin" data-toggle="validator" role="form" method="post" action="/createuser">
-
-                    <!--<ul class="nav nav-tabs">-->
-                    <!--<li role="presentation"><a href="#account" aria-controls="account" role="tab" data-toggle="tab">Votre-->
-                    <!--compte</a></li>-->
-                    <!--<li role="presentation"><a href="#profil" aria-controls="profil" role="tab" data-toggle="tab">Informations-->
-                    <!--sur vous</a></li>-->
-                    <!--</ul>-->
-
-                    <!--<div class="tab-content">-->
-                    <!--<div class="tab-pane" id="account" role="tabpanel">-->
+                <form id="formAccount" class="form-signin" role="form" novalidate="novalidate">
+                    <div id="account">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email"
+                                    <input id="email" type="email" class="form-control" name="email"
                                            placeholder="Email - Votre identifiant de connexion" required>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="password1" id="password"
-                                           placeholder="Mot de passe" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password2"
-                                           data-match="#password"
-                                           data-match-error="Les mots de passe ne sont pas identiques"
+                                    <input id="password" type="password" class="form-control" name="password1"
                                            placeholder="Mot de passe" required>
-                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="confirm_password" type="password" class="form-control" name="password2"
+                                           data-match="#password" data-match-error="Les mots de passe ne sont pas identiques"
+                                           placeholder="Mot de passe" required>
                                 </div>
                             </div>
                         </div>
-
-                        <!--<div class="clearfix"></div>-->
-                        <!--<div class="col-lg-12 text-center">-->
-                            <!--<button onclick="account=false" class="btn btn-xl">Suivant</button>-->
-                        <!--</div>-->
-                        <!--</div>-->
-
-
-                        <!--<div class="tab-pane" id="profil" role="tabpanel">-->
+                    </div>
+                </form>
+                <form id="formRegister" class="form-signin" role="form" method="post" action="/createuser" novalidate="novalidate">
+                    <input type="hidden" id="accountEmail" name="email">
+                    <input type="hidden" id="accountPassword" name="password">
+                    <input type="hidden" id="accountConfirmPassword" name="password2">
+                    <div id="profil" style="display: none;">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="prenom"
+                                    <input id="prenom" type="text" class="form-control" name="prenom"
                                            placeholder="Prenom" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
-
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="nom"
+                                    <input id="nom" type="text" class="form-control" name="nom"
                                            placeholder="Nom" required>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date_naissance"
+                                    <input id="date_naissance" type="date" class="form-control" name="date_naissance"
                                            placeholder="Date de naissance" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="lieu_naissance"
+                                    <input id="lieu_naissance" type="text" class="form-control" name="lieu_naissance"
                                            placeholder="Lieu de naissance" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="adresse"
                                            placeholder="Adresse" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="number" class="form-control" name="code_postal"
                                            placeholder="Code postal" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="number" class="form-control" name="telephone"
                                            placeholder="Téléphone" required>
-                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <!--<a href="/register/profil" class="btn btn-xl">Précédent</a>-->
-                            <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Valider</button>
-                        </div>
-                        <!--</div>-->
-                        <!--</div>-->
+                    </div>
                 </form>
+                <div class="clearfix"></div>
+                <div id="btnId2" class="col-lg-12 text-center">
+                    <button id="suivant" class="btn btn-xl">Suivant</button>
+                </div>
 
+                <div class="clearfix"></div>
+                <div id="btnPro2" class="col-lg-12 text-center" style="display: none;">
+                    <button id="precedent" class="btn btn-xl">Précédent</button>
+                    <button id="submit" type="submit" class="btn btn-primary btn-xl">Valider</button>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="/js/register.js"></script>

@@ -203,3 +203,18 @@ ul{
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
+
+.btn.btn-primary.active {
+    color: #ffffff;
+    background: #cc6698;
+    border-color: #cc6698;
+}
+
+button:active, button:focus {
+    outline: none !important;
+}
+
+.error {
+    color: #ff2d57;
+}
