@@ -12,7 +12,7 @@ module.exports = function (app) {
     var js = public + '/js/';
     var img = public + '/img/';
 
-    app.get(['/', '/login', '/register'], function (req, res) {
+    app.get(['/'], function (req, res) {
         if (req.originalUrl === '/') {
             req.originalUrl = 'index';
         }
@@ -25,6 +25,21 @@ module.exports = function (app) {
                 var publications = responseBody.result;
             }
             var model = {publication: publications};
+            res.render(viewname(req), model);
+        });
+
+    });
+
+    app.get(['/login', '/register'], function (req, res) {
+        request({
+            uri: "http://magazine.dev/api/status/sexe",
+            method: "GET"
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            if (!responseBody.error) {
+                var status = responseBody.result;
+            }
+            var model = {status: status};
             res.render(viewname(req), model);
         });
 

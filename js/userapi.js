@@ -16,6 +16,7 @@ module.exports = function (app, db) {
             if (!responseBody.exist) {
                 formuser.password = formuser.password1;
                 formuser.is_client = true;
+                console.log(formuser);
                 request({
                     uri: "http://magazine.dev/api/register",
                     method: "POST",
@@ -45,6 +46,25 @@ module.exports = function (app, db) {
                 }, function (err, response) {
                     // Response is response from notification
                 });
+            }
+        });
+    });
+
+    app.get("/existuser", function (req, res) {
+        var email = req.param('email');
+        request({
+            uri: "http://magazine.dev/api/user/exist",
+            method: "POST",
+            form: {
+                email: email
+            }
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            res.setHeader('Content-Type', 'application/json');
+            if (responseBody.exist) {
+                res.send(false);
+            } else {
+                res.send(true);
             }
         });
     });
