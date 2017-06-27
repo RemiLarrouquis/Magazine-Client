@@ -197,7 +197,7 @@ ul{
     padding-left:35px;
 }
 
-.divider {
+.navbar-nav .divider {
     height: 1px;
     margin: 9px 0;
     overflow: hidden;

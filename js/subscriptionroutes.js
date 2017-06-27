@@ -111,6 +111,36 @@ module.exports = function (app) {
                 }
             }
         })
+    });
+
+    app.get("/subscription/renew/:id", function (req, res) {
+        console.log("req.params.id",req.params.id);
+        request({
+            uri: "http://magazine.dev/api/abonnement/relance",
+            method: "POST",
+            form: {
+                id: req.params.id,
+                token: req.cookies.token
+            }
+        }, function (error, response, body) {
+            console.log("body",body)
+            var responseBody = JSON.parse(body);
+            if (responseBody.error) {
+                res.render("login");
+            } else {
+                // if (responseBody.result == "Success") {
+                //     notifier.notify({
+                //         title: 'Merci pour votre confiance !',
+                //         message: "Une année d'abonnement supplémentaire a été ajouté à votre magazine",
+                //         sound: true, // Only Notification Center or Windows Toasters
+                //         wait: true // Wait with callback, until user action is taken against notification
+                //     }, function (err, response) {
+                //         // Response is response from notification
+                //     });
+                //     res.redirect("/subscription")
+                // }
+            }
+        })
     })
 };
 function viewname(req) {
