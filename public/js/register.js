@@ -10,7 +10,6 @@ $(function() {
     $("#btnId,#precedent").on('click', function() {
         gotoAccount();
     });
-
     $("#submit").on('click', function() {
         if ($("#formRegister").valid()) {
             $("#formRegister").submit();
@@ -45,27 +44,33 @@ $(function() {
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
+                remote: "/existuser"
             },
             password: {
-                required: true
+                required: true,
+                minlength:6
             },
             confirm_password: {
                 required: true,
-                equalTo: "#password"
+                equalTo: "#password",
+                minlength:6
             }
         },
         messages: {
             password: {
-                required: "Veuillez renseigner un mot de passe"
+                required: "Veuillez renseigner un mot de passe",
+                minlength: "Ce champ doit dépasser 6 characters."
             },
             confirm_password: {
                 required: "Veuillez renseigner un mot de passe",
-                equalTo: "Les mots de passe ne sont pas identiques"
+                equalTo: "Les mots de passe ne sont pas identiques",
+                minlength: "Ce champ doit dépasser 6 characters."
             },
             email: {
                 required : "Veuillez renseigner une adresse mail valide",
-                email : "Veuillez renseigner une adresse mail"
+                email : "Veuillez renseigner une adresse mail",
+                remote : "Cet email est déjà utilisé."
             }
         }
     });
@@ -75,13 +80,10 @@ $(function() {
             prenom: "required",
             nom: "required",
             date_naissance: "required",
-            lieu_naissance: "required"
-        },
-        messages: {
-            prenom: 'Please enter your firstname',
-            nom: 'Please enter your lastname',
-            date_naissance: 'Please enter your lastname',
-            lieu_naissance: 'Please enter your lastname'
+            lieu_naissance: "required",
+            adresse: "required",
+            code_postal: "required",
+            telephone: "required"
         }
     });
 
