@@ -20,6 +20,7 @@ module.exports = function (app) {
             uri: "http://magazine.dev/api/publication/liste",
             method: "GET"
         }, function (error, response, body) {
+            console.log("body",body);
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var publications = responseBody.result;

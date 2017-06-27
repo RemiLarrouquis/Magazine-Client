@@ -10,23 +10,23 @@
             <!-- Début liste dynamique -->
             {{#each abonnements}}
             <div class="row scrollpoint sp-effect1">
-                <div class="media active feature">
-                    <a class="pull-left" href="#">
+                <div class="col-xs-12 media active feature">
+                    <a class="pull-left" href="/subscription/detail/{{id}}">
                         <image src="{{image}}" style="border-radius:50px;" height="100px" width="100px"
                                class="hover-picture"></image>
                     </a>
-                    <div class="media-body">
+                    <a class="media-body" href="/subscription/detail/{{id}}">
                         <h3 class="media-heading">{{titre}}</h3>
-                        <span>Fin abonnement : {{date_fin}}</span><br>
-                        <span>Il y a {{nb_an}} parutions dans l'année <br>pour un prix de {{prix_an}} euros.</span><br>
-                    </div>
+                        <span>Fin abonnement : <b>{{date_fin}}</b></span><br>
+                        <span>Il y a <b>{{nb_an}}</b> parutions dans l'année <br>pour un prix de <b>{{prix_an}}</b> euros.</span><br>
+                    </a>
                 </div>
-                <div class="buttons">
-                    <a href="/subscription/detail/{{id}}" class="btn pulse">Détail</a>
-                    <a href="#" class="btn pulse">Réabonner</a>
-                    <a href="#" class="btn pulse">Pause</a>
+                <div class="col-xs-12 buttons">
+                    <a href="/subscription/renew/{{id}}" class="col-xs-5 btn pulse">Réabonner</a>
+                    <a href="/subscription/stop/{{publication_id}}" class="col-xs-5 btn pulse">Arrêter</a>
                 </div>
             </div>
+            <br>
             {{/each}}
             <!-- Fin liste dynamique -->
         </ul>

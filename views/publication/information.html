@@ -62,6 +62,18 @@
                 </div>
 
                 {{#if est_abonnee}}
+                {{#if pause_abo}}
+                <div class="media active feature">
+                    <a class="pull-left" href="/subscription/new/{{id}}">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <a class="media-body" href="/subscription/new/{{id}}">
+                        <h3 class="media-heading">S'abonner</h3>
+                        Vous allez être redirigé vers un service d'abonnement sécurisé
+                    </a>
+                </div>
+                {{else}}
+
                 <div class="media active feature">
                     <a class="pull-left" href="/subscription">
                         <i class="fa fa-heart fa-2x"></i>
@@ -71,6 +83,8 @@
                         Voir ma liste des abonnements
                     </a>
                 </div>
+                {{/if}}
+
                 {{else}}
                 <div class="media active feature">
                     <a class="pull-left" href="/subscription/new/{{id}}">

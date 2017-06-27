@@ -32,12 +32,9 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications, cookie: req.cookies.token, abonnee: responseBody.user_est_abonnee};
-            console.log("model", model);
+            var model = {publication: publications, cookie: req.cookies.token};
             res.render("publication/information", model);
         });
-
-
     });
 };
 function viewname(req) {
