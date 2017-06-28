@@ -21,13 +21,14 @@ module.exports = function (app, db) {
                     method: "POST",
                     form: formuser
                 }, function (error, response, body) {
-                    var responsebody = JSON.parse(body);
-                    req.session.messages = responsebody;
+                    console.log("body",body)
+                    var responseBody = JSON.parse(body);
+                    req.session.messages = responseBody;
                     res.redirect("/login");
 
                 });
             } else {
-                req.session.messages = responsebody;
+                req.session.messages = responseBody;
                 res.redirect("/register");
             }
         });
@@ -60,15 +61,13 @@ module.exports = function (app, db) {
             method: "POST",
             form: formuser
         }, function (error, response, body) {
-            var responsebody = JSON.parse(body);
-            req.session.messages = responsebody;
-            if(!responsebody.error){
+            var responseBody = JSON.parse(body);
+            req.session.messages = responseBody;
+            if(!responseBody.error){
                 res.clearCookie("token");
-                res.cookie('token', responsebody.result, {maxAge: 9000000, httpOnly: true});
+                res.cookie('token', responseBody.result, {maxAge: 9000000, httpOnly: true});
                 res.redirect("/account");
-
             }
-
         });
     });
 
@@ -94,5 +93,4 @@ module.exports = function (app, db) {
         });
     });
 
-}
-;
+};

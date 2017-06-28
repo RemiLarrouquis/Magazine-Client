@@ -30,7 +30,7 @@ module.exports = function (app) {
                 var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token, messages :messages};
                 res.render("subscription/liste", model);
             } else {
-                req.session.messages = responsebody;
+                req.session.messages = responseBody;
                 res.redirect(common.redirect(req.cookies.token, "/publications"));
             }
         });
@@ -50,7 +50,7 @@ module.exports = function (app) {
                 var model = {publication: responseBody.result, abonnement: true, cookie: req.cookies.token};
                 res.render("publication/information", model);
             } else {
-                req.session.messages = responsebody;
+                req.session.messages = responseBody;
                 res.redirect(common.redirect(req.cookies.token, "/subscription"));
             }
         })
@@ -67,7 +67,7 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (responseBody.error) {
-                req.session.messages = responsebody;
+                req.session.messages = responseBody;
                 res.redirect("login");
             } else {
                 var model = {cookie: req.cookies.token, messages: responseBody};
@@ -86,7 +86,7 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            req.session.messages = responsebody;
+            req.session.messages = responseBody;
             if (responseBody.error) {
                 res.redirect("login");
             } else {
