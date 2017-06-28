@@ -56,8 +56,7 @@ header .navbar-default ul.navbar-nav {
   padding-top: 55px;
 }
 header .navbar-default ul.navbar-nav li a {
-  text-transform: capitalize;
-  font-weight: 400;
+  font-weight: 200;
   font-size: 16px;
   padding: 7px 20px;
   -webkit-transition: all 0.25s ease-in-out;
@@ -629,7 +628,7 @@ form textarea.form-control {
     margin-top: 20px;
   }
   header .navbar-default {
-    padding: 20px;
+    padding-top: 15px;
   }
   header .navbar-default .navbar-toggle {
     margin-top: 0px;
