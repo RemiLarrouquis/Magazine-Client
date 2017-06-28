@@ -2,69 +2,76 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Modifier votre compte</h2>
-                <h3 class="section-subheading text-muted">Permet de modifier vos informations</h3>
+                <h2 class="section-heading">Votre compte</h2>
             </div>
         </div>
         {{#with users}}
         <div class="row">
             <div class="col-lg-12">
-                <form class="form-signin" data-toggle="validator" role="form" method="post" action="/updateuser">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>Prenom</span>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="firstname" value="{{firstname}}"
-                                       placeholder="Prenom" required>
-                                <div class="help-block with-errors"></div>
+                <form id="formRegister" class="form-signin" role="form" method="post" action="/edituser/{{id}}" novalidate="novalidate">
+                    <div id="profil">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {{#each status}}
+                                    <input type="radio" name="sexe_id" value="{{id}}">{{libelle}}
+                                    {{/each}}
+                                </div>
                             </div>
-                            <span>Nom</span>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="lastname" value="{{lastname}}"
-                                       placeholder="Nom" required autofocus>
-                                <div class="help-block with-errors"></div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="prenom" type="text" class="form-control" name="prenom" value="{{prenom}}"
+                                           placeholder="Prenom" required>
+                                </div>
                             </div>
-                            <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="nom" type="text" class="form-control" name="nom" value="{{nom}}"
+                                           placeholder="Nom" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <span>Identifiant</span>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="login" value="{{login}}"
-                                       placeholder="Identifiant" disabled required>
-                                <div class="help-block with-errors"></div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="date_naissance" type="date" class="form-control" name="date_naissance"  value="{{date_naissance}}"
+                                           placeholder="Date de naissance" required>
+                                </div>
                             </div>
-                            <span>Mot de passe</span>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="password1" id="pwd" value="{{password}}"
-                                       placeholder="Mot de passe" required>
-                                <div class="help-block with-errors"></div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="lieu_naissance" type="text" class="form-control" name="lieu_naissance" value="{{lieu_naissance}}"
+                                           placeholder="Lieu de naissance" required>
+                                </div>
                             </div>
-                            <span>Vérification du mot de passe</span>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="password2" data-match="#pwd" data-match-error="Les mots de passe ne sont pas identiques" value="{{password}}"
-                                       placeholder="Vérification du mot de passe" required>
-                                <div class="help-block with-errors"></div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="adresse" type="text" class="form-control" name="adresse" value="{{adresse}}"
+                                           placeholder="Adresse" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <div id="success"></div>
-                            <button type="submit" class="btn btn-xl">Valider</button>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="code_postal" type="number" class="form-control" name="code_postal" value="{{code_postal}}"
+                                           placeholder="Code postal" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="telephone" type="number" class="form-control" name="telephone" value="{{telephone}}"
+                                           placeholder="Téléphone" required>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <div id="btnPro2" class="col-lg-12 text-center">
+                        <button id="submit" type="submit" class="btn btn-primary btn-xl">Valider</button>
+                    </div>
                 </form>
+
+
             </div>
         </div>
         {{/with}}
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </section>
+

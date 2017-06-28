@@ -33,6 +33,45 @@ module.exports = function (app, db) {
         });
     });
 
+
+    app.get("/account", function (req, res) {
+        request({
+            uri: "http://magazine.dev/api/user/details",
+            method: "GET",
+            qs: {
+                token: req.cookies.token
+            }
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            if (!responseBody.error) {
+                var model = {users: responseBody.result, cookie: req.cookies.token};
+                res.render("user/account", model);
+            }
+        });
+    });
+
+
+    app.post("/edituser/:id", function (req, res) {
+        var formuser = req.body;
+        formuser.token = req.cookies.token;
+        formuser.id = req.params.id;
+        request({
+            uri: "http://magazine.dev/api/user/edit",
+            method: "POST",
+            form: formuser
+        }, function (error, response, body) {
+            var responsebody = JSON.parse(body);
+            req.session.messages = responsebody;
+            if(!responsebody.error){
+                res.clearCookie("token");
+                res.cookie('token', responsebody.result, {maxAge: 9000000, httpOnly: true});
+                res.redirect("/account");
+
+            }
+
+        });
+    });
+
     /**
      * Utilisé lors de la validation AJAX du formulaire.
      */
@@ -55,4 +94,5 @@ module.exports = function (app, db) {
         });
     });
 
-};
+}
+;
