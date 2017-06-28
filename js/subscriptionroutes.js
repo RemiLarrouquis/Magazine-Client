@@ -14,7 +14,16 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
+            // console.log(responseBody)
             if (!responseBody.error) {
+                responseBody.abonnements.forEach(function (abonnement) {
+                    var myDate = abonnement.date_fin.toString();
+                    myDate = myDate.split("-");
+                    var newDate = myDate[1] + "," + myDate[2] + "," + myDate[0];
+                    if (new Date(newDate).getTime() < Date.now() + 5270000000) {
+                        abonnement.warn = true;
+                    }
+                });
                 var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token};
                 res.render("subscription/liste", model);
             } else {
@@ -148,7 +157,7 @@ module.exports = function (app) {
                     qs: {
                         token: req.cookies.token,
                         filterEnCours: true,
-                        filterEtat: 6
+                        filterEtat: 5
                     }
                 }, function (error, response, body) {
                     var responseStopBody = JSON.parse(body);
@@ -159,7 +168,7 @@ module.exports = function (app) {
                             qs: {
                                 token: req.cookies.token,
                                 filterEnCours: true,
-                                filterEtat: 5
+                                filterEtat: 6
                             }
                         }, function (error, response, body) {
                             var responsePauseBody = JSON.parse(body);
