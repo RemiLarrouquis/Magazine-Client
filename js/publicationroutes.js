@@ -14,7 +14,9 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications, cookie: req.cookies.token};
+            var messages = req.session.messages;
+            req.session.messages = undefined;
+            var model = {publication: publications, cookie: req.cookies.token, messages: messages};
             res.render("publication/publications", model);
         });
     });
@@ -33,11 +35,10 @@ module.exports = function (app) {
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
-            var model = {publication: publications, cookie: req.cookies.token};
+            var messages = req.session.messages;
+            req.session.messages = undefined;
+            var model = {publication: publications, cookie: req.cookies.token, messages: messages};
             res.render("publication/information", model);
         });
     });
 };
-function viewname(req) {
-    return req.originalUrl.replace(/^\//, '');
-}

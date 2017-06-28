@@ -6,6 +6,7 @@ var path = require('path');
 var request = require("request");
 var http = require('http');
 var url = require('url');
+var common = require(__dirname + '/js/commons');
 
 module.exports = function (app) {
     var public = __dirname + '/public/';
@@ -29,7 +30,7 @@ module.exports = function (app) {
                 var messages = responseBody;
             }
             var model = {publication: publications, messages : messages};
-            res.render(viewname(req), model);
+            res.render(common.viewname(req), model);
         });
 
     });
@@ -49,7 +50,7 @@ module.exports = function (app) {
                 req.session.messages = undefined;
             }
             var model = {status: status, messages: messages};
-            res.render(viewname(req), model);
+            res.render(common.viewname(req), model);
         });
 
     });
@@ -87,7 +88,3 @@ module.exports = function (app) {
 
     app.use(express.static(path.join(__dirname, 'public')));
 };
-
-function viewname(req) {
-    return req.originalUrl.replace(/^\//, '').split('?')[0];
-}

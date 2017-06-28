@@ -1,6 +1,7 @@
 var request = require("request");
 var notifier = require('node-notifier');
 var path = require('path');
+var common = require(__dirname + '/commons');
 
 module.exports = function (app) {
     app.get("/subscription", function (req, res) {
@@ -24,12 +25,13 @@ module.exports = function (app) {
                         abonnement.warn = true;
                     }
                 });
-                var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token};
+                var messages = req.session.messages;
+                req.session.messages = undefined;
+                var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token, messages :messages};
                 res.render("subscription/liste", model);
             } else {
-                if (responseBody.result == "Erreur d'authentification") {
-                    res.render("/login");
-                }
+                req.session.messages = responsebody;
+                res.redirect(common.redirect(req.cookies.token, "/publications"));
             }
         });
     });
@@ -48,26 +50,8 @@ module.exports = function (app) {
                 var model = {publication: responseBody.result, abonnement: true, cookie: req.cookies.token};
                 res.render("publication/information", model);
             } else {
-                if (responseBody.result == "Erreur d'authentification") {
-                    res.render("/login");
-                }
-            }
-        })
-    });
-
-    app.get("/subscription/detail/:id/", function (req, res) {
-        request({
-            uri: "http://magazine.dev/api/abonnement/detail?id=" + [req.params.id] + "&token=" + req.cookies.token,
-            method: "GET"
-        }, function (error, response, body) {
-            var responseBody = JSON.parse(body);
-            if (!responseBody.error) {
-                var model = {publication: responseBody.result, abonnement: true, cookie: req.cookies.token};
-                res.render("publication/information", model);
-            } else {
-                if (responseBody.result == "Erreur d'authentification") {
-                    res.render("/login");
-                }
+                req.session.messages = responsebody;
+                res.redirect(common.redirect(req.cookies.token, "/subscription"));
             }
         })
     });
@@ -83,12 +67,11 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (responseBody.error) {
-                res.render("login");
+                req.session.messages = responsebody;
+                res.redirect("login");
             } else {
-                if (responseBody.result == "Success") {
-                    var model = {cookie: req.cookies.token};
-                    res.render("subscription/success", model);
-                }
+                var model = {cookie: req.cookies.token, messages: responseBody};
+                res.render("subscription/success", model);
             }
         })
     });
@@ -103,12 +86,11 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
+            req.session.messages = responsebody;
             if (responseBody.error) {
-                res.render("login");
+                res.redirect("login");
             } else {
-                if (responseBody.result == "Success") {
-                    res.redirect("/subscription")
-                }
+                res.redirect("/subscription")
             }
         })
     });
@@ -123,23 +105,15 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
+            req.session.messages = responseBody;
             if (responseBody.error) {
-                res.render("login");
+                res.redirect("login");
             } else {
-                if (responseBody.result == "Success") {
-                    notifier.notify({
-                        title: 'Merci pour votre confiance !',
-                        message: "Une année d'abonnement supplémentaire a été ajouté à votre magazine",
-                        sound: true, // Only Notification Center or Windows Toasters
-                        wait: true // Wait with callback, until user action is taken against notification
-                    }, function (err, response) {
-                        // Response is response from notification
-                    });
-                    res.redirect("/subscription")
-                }
+                res.redirect("/subscription")
             }
         })
-    })
+    });
+
     app.get("/subscription/old", function (req, res) {
         request({
             uri: "http://magazine.dev/api/abonnement/liste",
@@ -181,26 +155,20 @@ module.exports = function (app) {
                                 };
                                 res.render("subscription/history", model);
                             } else {
-                                if (responsePauseBody.result == "Erreur d'authentification") {
-                                    res.render("/login");
-                                }
+                                req.session.messages = responsePauseBody;
+                                res.redirect(common.redirect(req.cookies.token, "/subscription"));
                             }
                         });
                     } else {
-                        if (responseStopBody.result == "Erreur d'authentification") {
-                            res.render("/login");
-                        }
+                        req.session.messages = responseStopBody;
+                        res.redirect(common.redirect(req.cookies.token, "/subscription"));
                     }
                 });
             } else {
-                if (responseOldBody.result == "Erreur d'authentification") {
-                    res.render("/login");
-                }
+                req.session.messages = responseOldBody;
+                res.redirect(common.redirect(req.cookies.token, "/subscription"));
             }
 
         });
     })
 };
-function viewname(req) {
-    return req.originalUrl.replace(/^\//, '');
-}

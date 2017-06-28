@@ -9,7 +9,6 @@ var cookieSession = require('cookie-session');
 var session = require('express-session');
 var exphbrs = require('express-handlebars');
 var paginate = require('express-paginate');
-var session = require('express-session');
 var async = require("async");
 
 var app = express();
