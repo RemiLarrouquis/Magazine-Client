@@ -9,16 +9,17 @@ var cookieSession = require('cookie-session');
 var session = require('express-session');
 var exphbrs = require('express-handlebars');
 var paginate = require('express-paginate');
+var session = require('express-session');
 var async = require("async");
 
-
 var app = express();
-
 app.use(cookieParser()); // read cookies (obligatoire pour l'authentification)
+
 app.use(cookieSession({keys: ['exemplecourssecretkey']}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev')); // toute les requêtes HTTP dans le log du serveur
+app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 
 // handlebars template engine
 app.engine('.html', exphbrs({extname: '.html', defaultLayout: 'template'}));

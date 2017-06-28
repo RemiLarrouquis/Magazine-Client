@@ -15,6 +15,7 @@
     <script src="/js/jquery-1.11.1.min.js"></script>
     <script src="/js/jquery.validate.min.js"></script>
     <script src="/js/validator.french.js"></script>
+    <script src="/js/jquery.toast.min.js"></script>
 
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -34,8 +35,8 @@
     <link rel="stylesheet" href="/stylesheets/slick.css">
     <link rel="stylesheet" href="/stylesheets/settings.css">
     <link rel="stylesheet" href="/stylesheets/card.css">
-
     <link rel="stylesheet" href="/stylesheets/berry.css">
+    <link rel="stylesheet" href="/stylesheets/jquery.toast.min.css">
 
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 
@@ -50,63 +51,86 @@
 </head>
 <body id="page-top" class="index">
 
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Publi'Magazine</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Publi'Magazine</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav ">
+                    {{#if cookie}}
+                    <li><a class="page-scroll" href="/subscription">Mes abonnements</a></li>
+                    <li><a class="page-scroll" href="/subscription/old">Mes anciens abonnements</a></li>
+                    <li><a class="page-scroll" href="/publications">Liste des publications</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="page-scroll" href="/account">Mon compte</a></li>
+                    <li><a class="page-scroll" href="/logout">Déconnexion</a></li>
+                    {{else}}
+                    <li><a class="page-scroll" href="/publications">Liste des publications</a></li>
+                    <li><a class="page-scroll" href="/login">Se connecter</a></li>
+                    <li><a class="page-scroll" href="/register">Créer un compte</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+
+
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav ">
-                {{#if cookie}}
-                <li><a class="page-scroll" href="/subscription">Mes abonnements</a></li>
-                <li><a class="page-scroll" href="/subscription/old">Mes anciens abonnements</a></li>
-                <li><a class="page-scroll" href="/publications">Liste des publications</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a class="page-scroll" href="/account">Mon compte</a></li>
-                <li><a class="page-scroll" href="/logout">Déconnexion</a></li>
-                {{else}}
-                <li><a class="page-scroll" href="/publications">Liste des publications</a></li>
-                <li><a class="page-scroll" href="/login">Se connecter</a></li>
-                <li><a class="page-scroll" href="/register">Créer un compte</a></li>
-                {{/if}}
-            </ul>
-        </div>
+    {{{body}}}
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/placeholdem.min.js"></script>
+    <script src="/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="/js/rs-plugin/js/jquery.themepunch.revolution.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/scripts.js"></script>
 
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+    <script>
+        $(document).ready(function () {
+            appMaster.preLoader();
+        });
+    </script>
 
-{{{body}}}
+    <!-- gestion des erreurs -->
+    {{#if messages}}
+        <script>
+            var error = '{{messages.error}}';
+            var msg = '{{messages.msg}}';
+            if (error) {
+                $.toast({
+                    heading: 'Error',
+                    text: msg,
+                    showHideTransition: 'fade',
+                    icon: 'error'
+                });
+            } else {
+                $.toast({
+                    heading: 'Success',
+                    text: msg,
+                    showHideTransition: 'slide',
+                    icon: 'success'
+                });
+            }
+        </script>
+    {{/if}}
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/placeholdem.min.js"></script>
-<script src="/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-<script src="/js/rs-plugin/js/jquery.themepunch.revolution.js"></script>
-<script src="/js/waypoints.min.js"></script>
-<script src="/js/scripts.js"></script>
-
-<script>
-    $(document).ready(function () {
-        appMaster.preLoader();
-    });
-</script>
 </body>
-
 </html>

@@ -16,40 +16,26 @@ module.exports = function (app, db) {
             if (!responseBody.exist) {
                 formuser.password = formuser.password1;
                 formuser.is_client = true;
-                console.log(formuser);
                 request({
                     uri: "http://magazine.dev/api/register",
                     method: "POST",
                     form: formuser
                 }, function (error, response, body) {
-                    console.log("body", body);
                     var responsebody = JSON.parse(body);
-                    if (responsebody.result) {
-                        notifier.notify({
-                            title: 'Bienvenue chez nous !',
-                            message: 'Un email de confirmation a été envoyé à votre adresse email pour valider votre compte !',
-                            sound: true, // Only Notification Center or Windows Toasters
-                            wait: true // Wait with callback, until user action is taken against notification
-                        }, function (err, response) {
-                            // Response is response from notification
-                        });
-                    }
+                    req.session.messages = responsebody;
                     res.redirect("/login");
 
                 });
             } else {
-                notifier.notify({
-                    title: 'Oups ...',
-                    message: 'Cet adresse email existe déjà',
-                    sound: true, // Only Notification Center or Windows Toasters
-                    wait: true // Wait with callback, until user action is taken against notification
-                }, function (err, response) {
-                    // Response is response from notification
-                });
+                req.session.messages = responsebody;
+                res.redirect("/register");
             }
         });
     });
 
+    /**
+     * Utilisé lors de la validation AJAX du formulaire.
+     */
     app.get("/existuser", function (req, res) {
         var email = req.param('email');
         request({

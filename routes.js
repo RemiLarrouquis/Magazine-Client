@@ -5,6 +5,7 @@ var express = require('express');
 var path = require('path');
 var request = require("request");
 var http = require('http');
+var url = require('url');
 
 module.exports = function (app) {
     var public = __dirname + '/public/';
@@ -24,8 +25,10 @@ module.exports = function (app) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var publications = responseBody.result;
+            } else {
+                var messages = responseBody;
             }
-            var model = {publication: publications};
+            var model = {publication: publications, messages : messages};
             res.render(viewname(req), model);
         });
 
@@ -36,11 +39,16 @@ module.exports = function (app) {
             uri: "http://magazine.dev/api/status/sexe",
             method: "GET"
         }, function (error, response, body) {
+
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var status = responseBody.result;
             }
-            var model = {status: status};
+            if (req.session.messages) {
+                var messages = req.session.messages;
+                req.session.messages = undefined;
+            }
+            var model = {status: status, messages: messages};
             res.render(viewname(req), model);
         });
 
@@ -55,7 +63,10 @@ module.exports = function (app) {
         }, function (error, response, body) {
             console.log("body", body);
             var responsebody = JSON.parse(body);
-            if (responsebody.result !== "Erreur d'identifiant ou mot de passe.") {
+            if (responsebody.error == true) {
+                req.session.messages = responsebody;
+                res.redirect("/login");
+            } else {
                 var cookie = req.cookies.token;
                 if (cookie === undefined) {
                     res.cookie('token', responsebody.result, {maxAge: 9000000, httpOnly: true});
@@ -78,5 +89,5 @@ module.exports = function (app) {
 };
 
 function viewname(req) {
-    return req.originalUrl.replace(/^\//, '');
+    return req.originalUrl.replace(/^\//, '').split('?')[0];
 }
