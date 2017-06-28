@@ -27,8 +27,8 @@ $(function() {
         $("#btnId2").show();
         $("#profil").hide();
         $("#btnPro2").hide();
-        $("#btnId").addClass("active");
-        $("#btnPro").removeClass("active");
+        $("#btnId").addClass("actif");
+        $("#btnPro").removeClass("actif");
     }
 
     function gotoProfil() {
@@ -36,8 +36,8 @@ $(function() {
         $("#btnId2").hide();
         $("#profil").show();
         $("#btnPro2").show();
-        $("#btnPro").addClass("active");
-        $("#btnId").removeClass("active");
+        $("#btnPro").addClass("actif");
+        $("#btnId").removeClass("actif");
     }
 
     $("#formAccount").validate({
