@@ -16,16 +16,19 @@
             <div class="col-md-12">
                 <img src="{{image}}" class="img-responsive scrollpoint sp-effect5" alt="">
             </div>
-
-            <div class="col-md-4 col-sm-4 scrollpoint sp-effect2">
-                {{#if publication_id}}
-                <div class="col-md-12 scrollpoint sp-effect1">
-                    <div class="media media-left feature">
-                        <p class="media-abonnement">{{description}}</p>
-                    </div>
+            <div class="col-md-12 scrollpoint sp-effect1">
+                <div class="media media-left feature">
+                    <p>{{description}}</p>
                 </div>
+            </div>
+            <div class="col-md-4 col-sm-4 scrollpoint sp-effect2">
+
+
+                {{#if inprogress}}
+
+                {{#if publication_id}}
                 <br>
-                Informations sur l'abonnement blablabla {{date_fin}}
+                Votre abonnement se termine le <b>{{date_fin}}</b>
                 <div class="media feature">
                     <a class="pull-left" href="/subscription">
                         <i class="fa fa-reply fa-2x"></i>
@@ -35,6 +38,8 @@
                         à la liste de mes abonnements
                     </a>
                 </div>
+
+                {{#if stop}}
                 <div class="media feature">
                     <a class="pull-left" href="/subscription/renew/{{id}}">
                         <i class="fa fa-refresh fa-2x"></i>
@@ -55,11 +60,20 @@
                 </div>
 
                 {{else}}
-                <div class="col-md-12 scrollpoint sp-effect1">
-                    <div class="media media-left feature">
-                        <p>{{description}}</p>
-                    </div>
+                <div class="media feature">
+                    <a class="pull-left" href="/subscription/stop/{{publication_id}}">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <a class="media-body" href="/subscription/stop/{{publication_id}}">
+                        <h3 class="media-heading">S'abonner</h3>
+                        à la publication
+                    </a>
                 </div>
+
+                {{/if}}
+
+
+                {{else}}
 
                 {{#if est_abonnee}}
                 {{#if pause_abo}}
@@ -97,7 +111,22 @@
                 </div>
                 {{/if}}
                 {{/if}}
+                {{/if}}
 
+
+                {{#if old}}
+                Votre abonnement est terminé depuis le <b>{{date_fin}}</b>
+
+                <div class="media active feature">
+                    <a class="pull-left" href="/subscription/new/{{id}}">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </a>
+                    <a class="media-body" href="/subscription/new/{{id}}">
+                        <h3 class="media-heading">S'abonner</h3>
+                        Vous allez être redirigé vers un service d'abonnement sécurisé
+                    </a>
+                </div>
+                {{/if}}
 
             </div>
         </div>

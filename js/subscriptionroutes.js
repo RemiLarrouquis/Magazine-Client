@@ -27,7 +27,7 @@ module.exports = function (app) {
                 });
                 var messages = req.session.messages;
                 req.session.messages = undefined;
-                var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token, messages :messages};
+                var model = {abonnements: responseBody.abonnements, cookie: req.cookies.token, messages: messages};
                 res.render("subscription/liste", model);
             } else {
                 req.session.messages = responseBody;
@@ -47,7 +47,19 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
+                console.log("responseBody", responseBody);
+                responseBody.result.forEach(function (pub) {
+                    var myDate = pub.date_fin.toString();
+                    myDate = myDate.split("-");
+                    var newDate = myDate[1] + "," + myDate[2] + "," + myDate[0];
+                    pub.old = new Date(newDate).getTime() < Date.now();
+                    pub.inprogress = !pub.old;
+                    if(pub.inprogress){
+                        pub.stop = pub.etat_id != 6;
+                    }
+                });
                 var model = {publication: responseBody.result, abonnement: true, cookie: req.cookies.token};
+                console.log("model", model);
                 res.render("publication/information", model);
             } else {
                 req.session.messages = responseBody;
@@ -70,7 +82,7 @@ module.exports = function (app) {
                 req.session.messages = responseBody;
                 res.redirect("login");
             } else {
-                console.log("responseBody",responseBody);
+                console.log("responseBody", responseBody);
                 var model = {cookie: req.cookies.token, messages: responseBody};
                 res.render("subscription/success", model);
             }

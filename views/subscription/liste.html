@@ -37,8 +37,17 @@
         </ul>
 
         {{else}}
-        Vous n'avez pas d'abonnement en cours
 
+        <span class="empty-screen">Vous n'avez pas d'abonnement en cours ...</span>
+        <div class="media active feature">
+            <a class="pull-left" href="/publications">
+                <i class="fa fa-plus fa-2x"></i>
+            </a>
+            <a class="media-body" href="/publications">
+                <h3 class="media-heading">Nos magazines</h3>
+                Vous allez être redirigé vers la liste des publications
+            </a>
+        </div>
         {{/if}}
     </div>
 </section>

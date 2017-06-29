@@ -330,3 +330,7 @@ header .navbar-default.scrolled .navbar-toggle {
 #formAccount{
     margin-top:20px;
 }
+
+.empty-screen{
+    font-size:20px;
+}
