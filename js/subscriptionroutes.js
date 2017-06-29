@@ -6,7 +6,7 @@ var common = require(__dirname + '/commons');
 module.exports = function (app) {
     app.get("/subscription", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/liste",
+            uri: common.url("/abonnement/liste"),
             method: "GET",
             qs: {
                 token: req.cookies.token,
@@ -38,7 +38,7 @@ module.exports = function (app) {
 
     app.get("/subscription/detail/:id", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/detail",
+            uri: common.url("/abonnement/detail"),
             method: "GET",
             qs: {
                 id: req.params.id,
@@ -58,7 +58,7 @@ module.exports = function (app) {
 
     app.get("/subscription/new/:id", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/new",
+            uri: common.url("/abonnement/new"),
             method: "POST",
             form: {
                 id: req.params.id,
@@ -79,7 +79,7 @@ module.exports = function (app) {
 
     app.get("/subscription/stop/:id", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/new",
+            uri: common.url("/abonnement/new"),
             method: "POST",
             form: {
                 id: req.params.id,
@@ -98,7 +98,7 @@ module.exports = function (app) {
 
     app.get("/subscription/renew/:id", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/relance",
+            uri: common.url("/abonnement/relance"),
             method: "POST",
             form: {
                 id: req.params.id,
@@ -117,7 +117,7 @@ module.exports = function (app) {
 
     app.get("/subscription/old", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/abonnement/liste",
+            uri: common.url("/abonnement/liste"),
             method: "GET",
             qs: {
                 token: req.cookies.token,
@@ -127,7 +127,7 @@ module.exports = function (app) {
             var responseOldBody = JSON.parse(body);
             if (!responseOldBody.error) {
                 request({
-                    uri: "http://magazine.dev/api/abonnement/liste",
+                    uri: common.url("/abonnement/liste"),
                     method: "GET",
                     qs: {
                         token: req.cookies.token,
@@ -138,7 +138,7 @@ module.exports = function (app) {
                     var responseStopBody = JSON.parse(body);
                     if (!responseStopBody.error) {
                         request({
-                            uri: "http://magazine.dev/api/abonnement/liste",
+                            uri: common.url("/abonnement/liste"),
                             method: "GET",
                             qs: {
                                 token: req.cookies.token,

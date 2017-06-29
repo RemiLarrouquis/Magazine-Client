@@ -1,11 +1,12 @@
 var request = require("request");
 var notifier = require('node-notifier');
 var path = require('path');
+var common = require(__dirname + '/commons');
 
 module.exports = function (app) {
     app.get("/publications", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/publication/liste",
+            uri: common.url("/publication/liste"),
             method: "GET",
             qs: {token: req.cookies.token}
         }, function (error, response, body) {
@@ -24,7 +25,7 @@ module.exports = function (app) {
     app.get("/publication/:id", function (req, res) {
 
         request({
-            uri: "http://magazine.dev/api/publication/detail",
+            uri: common.url("/publication/detail"),
             method: "GET",
             qs: {
                 id: req.params.id,

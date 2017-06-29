@@ -2,11 +2,12 @@ module.exports = function (app, db) {
     var request = require("request");
     var notifier = require('node-notifier');
     var path = require('path');
+    var common = require(__dirname + '/commons');
 
     app.post("/createuser", function (req, res) {
         var formuser = req.body;
         request({
-            uri: "http://magazine.dev/api/user/exist",
+            uri: common.url("/user/exist"),
             method: "POST",
             form: {
                 email: formuser.email
@@ -17,7 +18,7 @@ module.exports = function (app, db) {
                 formuser.password = formuser.password1;
                 formuser.is_client = true;
                 request({
-                    uri: "http://magazine.dev/api/register",
+                    uri: common.url("/register"),
                     method: "POST",
                     form: formuser
                 }, function (error, response, body) {
@@ -35,7 +36,7 @@ module.exports = function (app, db) {
 
     app.get("/account", function (req, res) {
         request({
-            uri: "http://magazine.dev/api/user/details",
+            uri: common.url("/user/details"),
             method: "GET",
             qs: {
                 token: req.cookies.token
@@ -55,7 +56,7 @@ module.exports = function (app, db) {
         formuser.token = req.cookies.token;
         formuser.id = req.params.id;
         request({
-            uri: "http://magazine.dev/api/user/edit",
+            uri: common.url("/user/edit"),
             method: "POST",
             form: formuser
         }, function (error, response, body) {
@@ -74,7 +75,7 @@ module.exports = function (app, db) {
     app.get("/existuser", function (req, res) {
         var email = req.param('email');
         request({
-            uri: "http://magazine.dev/api/user/exist",
+            uri: common.url("/user/exist"),
             method: "POST",
             form: {
                 email: email

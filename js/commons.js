@@ -11,6 +11,11 @@ var commons = {
         } else {
             return "/login";
         }
+    },
+
+    url: function (route) {
+        var base = "magazine.dev";
+        return "http://" + base + "/api" + route;
     }
 
 };
