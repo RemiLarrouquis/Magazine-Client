@@ -19,7 +19,7 @@ module.exports = function (app) {
             req.originalUrl = 'index';
         }
         request({
-            uri: "http://magazine.dev/api/publication/liste",
+            uri: common.url("/publication/liste"),
             method: "GET"
         }, function (error, response, body) {
             console.log("body",body);
@@ -37,7 +37,7 @@ module.exports = function (app) {
 
     app.get(['/login', '/register'], function (req, res) {
         request({
-            uri: "http://magazine.dev/api/status/sexe",
+            uri: common.url("/status/sexe"),
             method: "GET"
         }, function (error, response, body) {
 
@@ -58,7 +58,7 @@ module.exports = function (app) {
     app.post('/authenticate', function (req, res) {
         var formuser = req.body;
         request({
-            uri: "http://magazine.dev/api/login",
+            uri: common.url("/login"),
             method: "POST",
             form: formuser
         }, function (error, response, body) {
