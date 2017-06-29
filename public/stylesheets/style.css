@@ -281,25 +281,49 @@ header .navbar-default {
 /*.navbar-default{*/
 /*background-image: none;*/
 /*}*/
-header .navbar-default .navbar-brand{
-    color:black !important;
-}
-header .navbar-default .navbar-toggle {
-    color:black !important;
-    border-color:black !important;
-}
-header .navbar-default.scrolled .navbar-brand {
-    color:white !important;
-    padding-left:0;
-    background:transparent;
+header .navbar-default .navbar-brand {
+    color: black !important;
 }
 
-header .navbar-default.scrolled .navbar-toggle{
-    color:white !important;
-    border-color:white !important;
+header .navbar-default .navbar-toggle {
+    color: black !important;
+    border-color: black !important;
+}
+
+header .navbar-default.scrolled .navbar-brand {
+    color: white !important;
+    padding-left: 0;
+    background: transparent;
+}
+
+header .navbar-default.scrolled .navbar-toggle {
+    color: white !important;
+    border-color: white !important;
+}
+
+header .navbar-default .navbar-collapse {
+    background: rgba(98, 49, 99, 0.90);
 }
 
 #getApp {
     min-height: 800px;
+}
 
+.radio-span {
+    color:white;
+    font-size:15px;
+    font-weight: bold;
+    margin-left:5px !important;
+}
+
+.radio-button {
+    margin-left:5px !important;
+}
+
+.radio-group{
+    margin-bottom:30px;
+}
+
+#formAccount{
+    margin-top:20px;
 }

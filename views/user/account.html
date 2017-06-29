@@ -8,16 +8,10 @@
         {{#with users}}
         <div class="row">
             <div class="col-lg-12">
-                <form id="formRegister" class="form-signin" role="form" method="post" action="/edituser/{{id}}" novalidate="novalidate">
+                <form id="formRegister" class="form-signin" role="form" method="post" action="/edituser/{{id}}">
                     <div id="profil">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    {{#each status}}
-                                    <input type="radio" name="sexe_id" value="{{id}}">{{libelle}}
-                                    {{/each}}
-                                </div>
-                            </div>
+
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input id="prenom" type="text" class="form-control" name="prenom" value="{{prenom}}"

@@ -70,6 +70,7 @@ module.exports = function (app) {
                 req.session.messages = responseBody;
                 res.redirect("login");
             } else {
+                console.log("responseBody",responseBody);
                 var model = {cookie: req.cookies.token, messages: responseBody};
                 res.render("subscription/success", model);
             }

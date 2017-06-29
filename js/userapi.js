@@ -21,11 +21,9 @@ module.exports = function (app, db) {
                     method: "POST",
                     form: formuser
                 }, function (error, response, body) {
-                    console.log("body",body)
                     var responseBody = JSON.parse(body);
                     req.session.messages = responseBody;
                     res.redirect("/login");
-
                 });
             } else {
                 req.session.messages = responseBody;
@@ -44,10 +42,10 @@ module.exports = function (app, db) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            if (!responseBody.error) {
-                var model = {users: responseBody.result, cookie: req.cookies.token};
-                res.render("user/account", model);
-            }
+            var message = req.session.messages;
+            req.session.messages = undefined;
+            var model = {users: responseBody.result, cookie: req.cookies.token, messages: message};
+            res.render("user/account", model);
         });
     });
 
@@ -62,12 +60,11 @@ module.exports = function (app, db) {
             form: formuser
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
+            console.log("responseBody",responseBody);
             req.session.messages = responseBody;
-            if(!responseBody.error){
-                res.clearCookie("token");
-                res.cookie('token', responseBody.result, {maxAge: 9000000, httpOnly: true});
-                res.redirect("/account");
-            }
+            res.clearCookie("token");
+            res.cookie('token', responseBody.result, {maxAge: 9000000, httpOnly: true});
+            res.redirect("/account");
         });
     });
 
