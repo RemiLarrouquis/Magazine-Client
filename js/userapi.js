@@ -61,7 +61,7 @@ module.exports = function (app, db) {
             form: formuser
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            console.log("responseBody",responseBody);
+            console.log("responseBody", responseBody);
             req.session.messages = responseBody;
             res.clearCookie("token");
             res.cookie('token', responseBody.result, {maxAge: 9000000, httpOnly: true});
@@ -88,6 +88,19 @@ module.exports = function (app, db) {
             } else {
                 res.send(true);
             }
+        });
+    });
+
+
+    app.get("/user/confirm/:id", function (req, res) {
+        var email = req.param('email');
+        request({
+            uri: common.url("/confirm"),
+            method: "GET",
+            qs: {to_confirm: req.params.id}
+        }, function (error, response, body) {
+            console.log("body", body);
+            res.render("user/confirm")
         });
     });
 

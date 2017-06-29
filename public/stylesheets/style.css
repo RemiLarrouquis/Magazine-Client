@@ -163,7 +163,7 @@ p.media-abonnement:hover {
 }
 
 .section-return {
-    margin-top: 60px;
+    margin-top: 90px;
 }
 
 .section-heading-nomarge {
@@ -301,9 +301,12 @@ header .navbar-default.scrolled .navbar-toggle {
     border-color: white !important;
 }
 
-header .navbar-default .navbar-collapse {
-    background: rgba(98, 49, 99, 0.90);
+@media (min-width: 768px){
+    header .navbar-default .navbar-collapse {
+        background: rgba(98, 49, 99, 0.90);
+    }
 }
+
 
 #getApp {
     min-height: 800px;
