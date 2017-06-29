@@ -80,7 +80,7 @@ module.exports = function (app) {
             var responseBody = JSON.parse(body);
             if (responseBody.error) {
                 req.session.messages = responseBody;
-                res.redirect("login");
+                res.redirect("/login");
             } else {
                 console.log("responseBody", responseBody);
                 var model = {cookie: req.cookies.token, messages: responseBody};
