@@ -35,8 +35,6 @@ a:focus {
     transform: translateY(-0.25em);
 }
 
-
-
 .slide:hover,
 .slide:focus {
     box-shadow: inset 6.5em 0 0 0 var(--hover);
@@ -76,8 +74,6 @@ offset:focus {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
     transform: translateY(-0.25em);
 }
-
-
 
 .slide:hover, .slide:focus {
     box-shadow: inset 6.5em 0 0 0 var(--hover);
@@ -252,6 +248,7 @@ button:active, button:focus {
 .navbar-toggle {
     margin-right: 20px !important;
 }
+
 .navbar-brand {
     margin-top: 10px;
     margin-left: 20px;
@@ -259,23 +256,50 @@ button:active, button:focus {
     font-size: 25px;
 }
 
-.section-heading{
-    color:white!important;
+.section-heading {
+    color: white !important;
 }
-#reviews{
+
+#reviews {
     vertical-align: middle;
     float: none;
-    padding-top:40px;
-    min-height:800px;
+    padding-top: 40px;
+    min-height: 800px;
 }
+
 /*#reviews */
 
-form .form-control{
-    color:black !important;
-    border:1px solid #585858 !important;
+form .form-control {
+    color: black !important;
+    border: 1px solid #585858 !important;
 }
 
-#getApp{
-    min-height:800px;
+header .navbar-default {
+    color: black;
+}
+
+/*.navbar-default{*/
+/*background-image: none;*/
+/*}*/
+header .navbar-default .navbar-brand{
+    color:black !important;
+}
+header .navbar-default .navbar-toggle {
+    color:black !important;
+    border-color:black !important;
+}
+header .navbar-default.scrolled .navbar-brand {
+    color:white !important;
+    padding-left:0;
+    background:transparent;
+}
+
+header .navbar-default.scrolled .navbar-toggle{
+    color:white !important;
+    border-color:white !important;
+}
+
+#getApp {
+    min-height: 800px;
 
 }

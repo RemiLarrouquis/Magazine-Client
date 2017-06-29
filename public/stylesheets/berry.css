@@ -602,7 +602,7 @@ form .form-control {
   padding: 20px;
   color: #cfcfcf;
   border: 2px solid #cccccc;
-  font-weight: 300;
+  font-weight: bold;
 }
 form textarea.form-control {
   -webkit-border-radius: 20px;
