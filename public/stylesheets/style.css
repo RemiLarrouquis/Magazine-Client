@@ -224,6 +224,15 @@ button:active, button:focus {
     margin-bottom: 15px;
 }
 
+
+.section-title-paiement {
+    background-color: grey;
+    color: white;
+    padding: 5px 20px;
+    margin-bottom: 2px;
+    font-size:20px;
+}
+
 .section-warn {
     background-color: #F5A9F2;
     color: white;
@@ -333,4 +342,14 @@ header .navbar-default.scrolled .navbar-toggle {
 
 .empty-screen{
     font-size:20px;
+}
+
+.icon-paiement{
+    color:white;
+    padding:4px 10px;
+}
+
+.box-paiement{
+    padding-bottom:5px;
+    border-bottom:grey solid 1px;
 }

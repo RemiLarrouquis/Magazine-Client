@@ -1,0 +1,50 @@
+<section id="reviews">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Vos informations de paiement</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form id="formRegister" class="form-signin" role="form" method="post" action="/edituser/{{id}}">
+                    <div id="profil">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input id="cardnumber" type="text" class="form-control" name="cardnumber"
+                                           placeholder="Numero de carte" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <input id="cardmonth" type="number" class="form-control" name="cardmonth"
+                                           placeholder="Mois" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <input id="cardyear" type="number" class="form-control" name="cardyear"
+                                           placeholder="Année" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-offset-3 col-xs-6">
+                                <div class="form-group">
+                                    <input id="amount" type="number" class="form-control" name="amount" value="{{price}}"
+                                           placeholder="Montant" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="btnPro2" class="col-lg-12 text-center">
+                        <button id="submit" type="submit" class="btn btn-xl up">Valider</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -11,7 +11,8 @@ module.exports = function (app) {
             qs: {
                 token: req.cookies.token,
                 filterEtat: 4,
-                filterEnCours: true
+                filterEnCours: true,
+                orderByDateFin:true
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
@@ -77,6 +78,7 @@ module.exports = function (app) {
                 token: req.cookies.token
             }
         }, function (error, response, body) {
+             console.log("body",body);
             var responseBody = JSON.parse(body);
             if (responseBody.error) {
                 req.session.messages = responseBody;

@@ -32,5 +32,6 @@ require('../js/userapi.js')(app);
 //Routing
 require('../js/subscriptionroutes')(app);
 require('../js/publicationroutes')(app);
+require('../js/paiementroutes')(app);
 
 app.listen(3333);

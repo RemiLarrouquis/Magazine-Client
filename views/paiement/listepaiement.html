@@ -1,0 +1,48 @@
+<section id="features">
+    <div class="container-fluid">
+
+        <div class="section-heading scrollpoint sp-effect3">
+            <h1>Paiements</h1>
+        </div>
+
+        {{#each publications}}
+        <div class="section-title-paiement row" id="section">
+            <span>{{titre}}</span>
+            <a onclick="popover('{{publication_id}}')" class="pull-right icon-paiement"><i class="fa fa-angle-down"></i></a>
+        </div>
+        <div  id="{{publication_id}}" class="section-paiement" style="display: none;">
+            {{#each paiement}}
+
+            <ul class="item-list striped box-paiement">
+                <div class="row scrollpoint sp-effect1">
+                    <div class="col-xs-12 media active feature">
+                        {{#if aPayer}}
+                        <a class="pull-right" href="/paiement/esipay/{{id}}">
+                            <i class="fa fa-eur fa-2x"></i>
+                        </a>
+                        {{/if}}
+                        <div class="media-body">
+                            <h3 class="media-heading">{{prix_an}} euros à payer {{idEtatPaie}}</h3>
+                            Pour la période du <b>{{prix_an}}</b> au <b>{{prix_an}}</b>.
+                        </div>
+                    </div>
+                </div>
+            </ul>
+
+            {{/each}}
+        </div>
+
+        {{/each}}
+    </div>
+</section>
+<script>
+    function popover(id) {
+        if ($("#" + id).hasClass("section-cache")) {
+            $("#" + id).hide();
+            $("#" + id).removeClass("section-cache");
+        } else {
+            $("#" + id).show();
+            $("#" + id).addClass("section-cache");
+        }
+    }
+</script>
