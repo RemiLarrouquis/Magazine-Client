@@ -350,6 +350,11 @@ header .navbar-default.scrolled .navbar-toggle {
 }
 
 .box-paiement{
-    padding-bottom:5px;
+    padding:10px 0;
     border-bottom:grey solid 1px;
+}
+
+.check-valide{
+    background-color:green !important;
+    border: 2px solid green !important;
 }

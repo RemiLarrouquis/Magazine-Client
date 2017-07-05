@@ -20,11 +20,20 @@
                         <a class="pull-right" href="/paiement/esipay/{{id}}">
                             <i class="fa fa-eur fa-2x"></i>
                         </a>
-                        {{/if}}
                         <div class="media-body">
-                            <h3 class="media-heading">{{prix_an}} euros à payer {{idEtatPaie}}</h3>
-                            Pour la période du <b>{{prix_an}}</b> au <b>{{prix_an}}</b>.
+                            <h3 class="media-heading">{{prix_an}} euros à payer</h3>
+                            Pour la période du <br><b>{{date_debut}}</b> au <b>{{date_fin}}</b>.
                         </div>
+                        {{else}}
+                        <a class="pull-right" href="/paiement/esipay/{{id}}">
+                            <i class="fa fa-check check-valide fa-2x"></i>
+                        </a>
+                        <div class="media-body">
+                            <h3 class="media-heading">{{prix_an}} euros réglé.</h3>
+                            Pour la période du <br><b>{{date_debut}}</b> au <b>{{date_fin}}</b>.
+                        </div>
+                        {{/if}}
+
                     </div>
                 </div>
             </ul>
