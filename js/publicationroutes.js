@@ -11,7 +11,7 @@ module.exports = function (app) {
             qs: {token: req.cookies.token}
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            console.log("responseBody", responseBody);
+
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
