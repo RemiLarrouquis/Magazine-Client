@@ -358,3 +358,20 @@ header .navbar-default.scrolled .navbar-toggle {
     background-color:green !important;
     border: 2px solid green !important;
 }
+
+.check-green{
+    color:green !important;
+    border: 2px solid green !important;
+}
+
+.b-green{
+    color:green;
+}
+
+.body-paiement{
+    height:350px;
+}
+.border-bottom-liste{
+    padding-bottom: 10px;
+    border-bottom: solid 0.2px lightpink;
+}

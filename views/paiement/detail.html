@@ -1,0 +1,35 @@
+<section id="about">
+    <div class="container">
+
+        <div class="section-heading scrollpoint sp-effect3">
+            <h1>Paiements</h1>
+            <div class="divider"></div>
+            <p>Liste des paiements de </p>
+        </div>
+
+        <div class="row">
+            {{#each paiements}}
+
+            {{#if aPayer}}
+            <a class="col-xs-6 body-paiement" href="/paiement/esipay/{{id}}">
+                <div class="about-item scrollpoint sp-effect2">
+                    <i class="fa fa-eur fa-2x" href="/paiement/esipay/{{id}}"></i>
+                    <h3>{{montant}} euros</h3>
+                    <p>Payer la somme indiqué pour recevoir les magazines du <br><b>{{date_debut}}</b><br> au<br> <b>{{date_fin}}</b>.</p>
+                </div>
+            </a>
+            {{else}}
+            <div class="col-xs-6 body-paiement">
+                <div class="about-item scrollpoint sp-effect5">
+                    <i class="fa fa-check check-green fa-2x"></i>
+                    <h3>{{etatPaie_libelle}}</h3>
+                    <p>Montant réglé pour la période du <br><b class="b-green">{{date_debut}}</b><br> au<br> <b class="b-green">{{date_fin}}</b>.</p>
+                </div>
+            </div>
+            {{/if}}
+
+            {{/each}}
+
+        </div>
+    </div>
+</section>

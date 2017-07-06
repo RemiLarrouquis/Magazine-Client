@@ -68,4 +68,34 @@ module.exports = function (app) {
             res.redirect("/paiements#" + formuser.id);
         });
     });
+
+
+    app.get("/paiement/detail/:id", function (req, res) {
+
+        request({
+            uri: common.url("/paiement/listByPub"),
+            method: "GET",
+            qs: {
+                pub_id: req.params.id,
+                token: req.cookies.token
+            }
+        }, function (error, response, body) {
+            var responseBody = JSON.parse(body);
+            if (!responseBody.error) {
+                console.log("responseBody", responseBody);
+                responseBody.result.forEach(function (paie) {
+                    var myDate = paie.date_fin.toString();
+                    myDate = myDate.split("-");
+                    var oldDate = myDate[0] - 1;
+                    paie.date_debut = oldDate + "-" + myDate[1] + "-" + myDate[2];
+                    paie.aPayer = paie.idEtatPaie == 8;
+                });
+                var paiements = responseBody.result;
+            }
+            var messages = req.session.messages;
+            req.session.messages = undefined;
+            var model = {paiements: paiements, cookie: req.cookies.token, messages: messages};
+            res.render("paiement/detail", model);
+        });
+    });
 };

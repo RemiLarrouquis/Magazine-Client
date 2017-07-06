@@ -16,7 +16,7 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            // console.log(responseBody)
+            console.log(responseBody)
             if (!responseBody.error) {
                 responseBody.abonnements.forEach(function (abonnement) {
                     var myDate = abonnement.date_fin.toString();

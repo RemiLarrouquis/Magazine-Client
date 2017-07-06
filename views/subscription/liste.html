@@ -9,7 +9,7 @@
             <!-- Fin header list -->
             <!-- Début liste dynamique -->
             {{#each abonnements}}
-            <div class="row scrollpoint sp-effect1">
+            <div class="row scrollpoint sp-effect1 border-bottom-liste">
                 <div class="col-xs-12 media active feature">
                     <a class="pull-left" href="/subscription/detail/{{id}}">
                         <image src="{{image}}" style="border-radius:50px;" height="100px" width="100px"
@@ -29,6 +29,9 @@
                 <div class="col-xs-12 buttons">
                     <a href="/subscription/renew/{{id}}" class="col-xs-5 btn pulse">Réabonner</a>
                     <a href="/subscription/stop/{{publication_id}}" class="col-xs-5 btn pulse">Arrêter</a>
+                </div>
+                <div class="col-xs-offset-2 col-xs-10">
+                    <a href="/paiement/detail/{{publication_id}}" class="col-xs-8 btn pulse">Paiement</a>
                 </div>
             </div>
             <br>
