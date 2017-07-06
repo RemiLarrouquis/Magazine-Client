@@ -365,7 +365,7 @@ header .navbar-default.scrolled .navbar-toggle {
 }
 
 .b-green{
-    color:green;
+    color:green !important;
 }
 
 .body-paiement{
