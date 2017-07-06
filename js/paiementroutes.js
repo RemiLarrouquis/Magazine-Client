@@ -17,7 +17,6 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             responseBody.abonnements.forEach(function (abonnement) {
-
                 abonnement.paiement.forEach(function (paie) {
                     var myDate = paie.date_fin.toString();
                     myDate = myDate.split("-");
