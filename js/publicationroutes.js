@@ -10,8 +10,8 @@ module.exports = function (app) {
             method: "GET",
             qs: {token: req.cookies.token}
         }, function (error, response, body) {
-            console.log("body", body);
             var responseBody = JSON.parse(body);
+            console.log("responseBody", responseBody);
             if (!responseBody.error) {
                 var publications = responseBody.result;
             }
@@ -34,7 +34,6 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
-                console.log("responseBody", responseBody);
                 responseBody.result.forEach(function (pub) {
                     pub.inprogress = true;
                 });

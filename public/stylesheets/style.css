@@ -224,13 +224,12 @@ button:active, button:focus {
     margin-bottom: 15px;
 }
 
-
 .section-title-paiement {
     background-color: grey;
     color: white;
     padding: 5px 20px;
     margin-bottom: 2px;
-    font-size:20px;
+    font-size: 20px;
 }
 
 .section-warn {
@@ -310,68 +309,79 @@ header .navbar-default.scrolled .navbar-toggle {
     border-color: white !important;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     header .navbar-default .navbar-collapse {
         background: rgba(98, 49, 99, 0.90);
     }
 }
-
 
 #getApp {
     min-height: 800px;
 }
 
 .radio-span {
-    color:white;
-    font-size:15px;
+    color: white;
+    font-size: 15px;
     font-weight: bold;
-    margin-left:5px !important;
+    margin-left: 5px !important;
 }
 
 .radio-button {
-    margin-left:5px !important;
+    margin-left: 5px !important;
 }
 
-.radio-group{
-    margin-bottom:30px;
+.radio-group {
+    margin-bottom: 30px;
 }
 
-#formAccount{
-    margin-top:20px;
+#formAccount {
+    margin-top: 20px;
 }
 
-.empty-screen{
-    font-size:20px;
+.empty-screen {
+    font-size: 20px;
 }
 
-.icon-paiement{
-    color:white;
-    padding:4px 10px;
+.icon-paiement {
+    color: white;
+    padding: 4px 10px;
 }
 
-.box-paiement{
-    padding:10px 0;
-    border-bottom:grey solid 1px;
+.box-paiement {
+    padding: 10px 0;
+    border-bottom: grey solid 1px;
 }
 
-.check-valide{
-    background-color:green !important;
+.check-valide {
+    background-color: green !important;
     border: 2px solid green !important;
 }
 
-.check-green{
-    color:green !important;
+.check-green {
+    color: green !important;
     border: 2px solid green !important;
 }
 
-.b-green{
-    color:green !important;
+.b-green {
+    color: green !important;
 }
 
-.body-paiement{
-    height:350px;
+.body-paiement {
+    height: 350px;
 }
-.border-bottom-liste{
+
+.border-bottom-liste {
     padding-bottom: 10px;
     border-bottom: solid 0.2px lightpink;
+}
+
+.progress {
+    height: 10px !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+
+.progress-bar {
+    background-color: green !important;
+    background-image: none;
 }

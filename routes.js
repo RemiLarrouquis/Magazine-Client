@@ -22,7 +22,6 @@ module.exports = function (app) {
             uri: common.url("/publication/liste"),
             method: "GET"
         }, function (error, response, body) {
-            console.log("body",body);
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var publications = responseBody.result;
@@ -62,7 +61,6 @@ module.exports = function (app) {
             method: "POST",
             form: formuser
         }, function (error, response, body) {
-            console.log("body", body);
             var responsebody = JSON.parse(body);
             if (responsebody.error == true) {
                 req.session.messages = responsebody;

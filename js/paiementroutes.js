@@ -22,8 +22,6 @@ module.exports = function (app) {
                     myDate = myDate.split("-");
                     var oldDate = myDate[0] - 1;
                     paie.date_debut = oldDate + "-" + myDate[1] + "-" + myDate[2];
-                    console.log("paie.date_fin",paie.date_fin);
-                    console.log("paie.date_debut",paie.date_debut);
                     paie.aPayer = paie.idEtatPaie == 8;
                 })
             });
@@ -42,7 +40,6 @@ module.exports = function (app) {
             method: "GET",
             qs: {token: req.cookies.token,id:req.params.id}
         }, function (error, response, body) {
-            console.log("body", body);
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var paiements = responseBody.result;
@@ -63,7 +60,6 @@ module.exports = function (app) {
             form: formuser
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            console.log("responseBody", responseBody);
             req.session.messages = responseBody;
             res.redirect("/paiements#" + formuser.id);
         });
@@ -82,7 +78,6 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
-                console.log("responseBody", responseBody);
                 responseBody.result.forEach(function (paie) {
                     var myDate = paie.date_fin.toString();
                     myDate = myDate.split("-");

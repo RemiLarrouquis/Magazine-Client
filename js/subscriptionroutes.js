@@ -16,7 +16,6 @@ module.exports = function (app) {
             }
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
-            console.log(responseBody)
             if (!responseBody.error) {
                 responseBody.abonnements.forEach(function (abonnement) {
                     var myDate = abonnement.date_fin.toString();
@@ -48,7 +47,6 @@ module.exports = function (app) {
         }, function (error, response, body) {
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
-                console.log("responseBody", responseBody);
                 responseBody.result.forEach(function (pub) {
                     var myDate = pub.date_fin.toString();
                     myDate = myDate.split("-");
@@ -60,7 +58,6 @@ module.exports = function (app) {
                     }
                 });
                 var model = {publication: responseBody.result, abonnement: true, cookie: req.cookies.token};
-                console.log("model", model);
                 res.render("publication/information", model);
             } else {
                 req.session.messages = responseBody;
@@ -78,13 +75,11 @@ module.exports = function (app) {
                 token: req.cookies.token
             }
         }, function (error, response, body) {
-             console.log("body",body);
             var responseBody = JSON.parse(body);
             if (responseBody.error) {
                 req.session.messages = responseBody;
                 res.redirect("/login");
             } else {
-                console.log("responseBody", responseBody);
                 var model = {cookie: req.cookies.token, messages: responseBody};
                 res.render("subscription/success", model);
             }
