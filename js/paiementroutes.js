@@ -40,6 +40,7 @@ module.exports = function (app) {
             method: "GET",
             qs: {token: req.cookies.token,id:req.params.id}
         }, function (error, response, body) {
+            console.log("body",body);
             var responseBody = JSON.parse(body);
             if (!responseBody.error) {
                 var paiements = responseBody.result;
@@ -53,7 +54,6 @@ module.exports = function (app) {
         var formuser = req.body;
         formuser.token = req.cookies.token;
         formuser.paie_id = req.params.id;
-        console.log("formuser",formuser);
         request({
             uri: common.url("/paiement/payer"),
             method: "POST",

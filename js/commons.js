@@ -14,8 +14,8 @@ var commons = {
     },
 
     url: function (route) {
-        var base = "magazine.dev";
-        // var base = "10.0.10.120/Magazine/public";
+        // var base = "magazine.dev";
+        var base = "10.0.10.120/Magazine/public";
 
         return "http://" + base + "/api" + route;
     }

@@ -95,6 +95,7 @@ module.exports = function (app) {
                 token: req.cookies.token
             }
         }, function (error, response, body) {
+            console.log("body",body);
             var responseBody = JSON.parse(body);
             req.session.messages = responseBody;
             if (responseBody.error) {
